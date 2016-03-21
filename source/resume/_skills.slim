@@ -1,0 +1,9 @@
+h4 Skills
+
+- data.resume.skills.each_slice(2) do |slice|
+    .skills
+      - slice.each do |type, skills|
+        div
+          h5 = type.capitalize
+          p = sentence(skills)
+        

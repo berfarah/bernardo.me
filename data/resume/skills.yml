@@ -1,0 +1,22 @@
+languages:
+  - HTML & CSS
+  - SASS/LESS/Stylus
+  - Javascript
+  - Ruby
+  - Go
+  - SQL
+
+frameworks:
+  - Rails
+  - Hanami
+  - Ember
+  - React
+
+methodologies:
+  - Test Driven Development
+  - Agile Development
+  - Continuous Integration
+
+systems:
+  - Docker
+  - OneOps

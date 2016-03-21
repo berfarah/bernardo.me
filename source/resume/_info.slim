@@ -1,0 +1,11 @@
+- info = data.resume.info
+
+.info
+  = info.name
+  ', 
+  = info.location
+
+.info
+  span: a href="tel:#{info.phone_plain}" = info.phone
+  span: a href="mailto:#{info.email}" = info.email
+  span: a href="//#{info.homepage}" = info.homepage

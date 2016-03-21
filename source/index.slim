@@ -1,0 +1,32 @@
+.welcome
+  img.left src="/images/bernardo.png"
+  h2
+    ' Hi, I am
+    strong Bernardo Farah
+    '  - a mix of Swiss and Brazilian, a
+    strong developer,
+    '  an
+    strong amateur composer,
+    '  and a
+    strong tech enthusiast
+
+.nav-container: nav.nav
+  ul.nav-left
+    li: a.about href="mailto:hi@bernardo.me"
+      i.icon.icon-envelope
+      | Email
+    li: a.resume href="/resume" target="_blank"
+      i.icon.icon-file-text
+      | R&eacute;sum&eacute;
+  ul.nav-right
+    - data.socialmedia.each do |icon, media|
+      li: a class="#{icon}" href=media.url target="_blank"
+        i class="icon icon-#{icon}"
+        = media.name
+
+.latest
+  h4 Latest posts
+  ul
+    - blog.articles[0..5].each do |article|
+      li: a href=article.url
+        h5 = article.title

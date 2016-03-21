@@ -1,0 +1,40 @@
+- company: WCC LLC.
+  title: Software Developer at Walmart.com
+  from: February 2016
+  to: Present
+  bullets:
+    - Driving test driven development, unified code standards and streamlined deployment
+
+- company: WCC LLC.
+  title: Tools & Process Developer at Walmart.com
+  from: January 2015
+  to: February 2016
+  bullets:
+    - Proactively scoped, developed and maintained a toolsuite used by over 100 people across multiple departments that resulted in a yearly value savings of over $1.7MM
+    - Built an image derivative generator that supports front-end product imagery across Walmart.com and has created over 50MM images to date
+    - Provided technical consulting as well as detailed requirements on vendor solutions that resulted in workflow enhancements
+    - Developed streamlined processes that improved reliability and efficiency in imagery procurement from third parties
+
+- company: WCC LLC.
+  title: Site Merchandiser at Walmart.com
+  from: October 2013
+  to: January 2015
+  bullets:
+    - Drove consistency in best practices by developing and sharing tools, as well as technical knowledge with partners on the site merchandising team
+    - Coordinated with cross-functional partners, ensuring both business goals and customer needs were met consistently and within deadlines
+    - Improved efficiency in processes surrounding creation, distribution and deployment of content by as part of a task force aimed at improving project management tools
+
+- company: Walmart
+  title: Marketing Intern
+  from: June 2012
+  to: June 2013
+  bullets:
+    - Managed content for Walmart‘s weekly email newsletter, reaching 23 million customers
+    - Played advisory role concerning digital capabilities in vendor RFP process
+
+- company: Holy Swiss Cheese
+  title: Web Developer & Designer
+  from: April 2008
+  to: April 2012
+  bullets:
+    - Worked with JungleDrums Ltd., Fugata Quintet LLP. Dancing Bee Ltd. and S2 Games
