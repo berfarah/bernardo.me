@@ -51,8 +51,7 @@ set :markdown, fenced_code_blocks: true, smartypants: true, footnotes: true,
                strikethrough: true, highlight: true, autolink: true,
                link_attributes: { target: "_blank" }, with_toc_data: true
 
-activate :syntax, line_numbers: true #, inline_theme: "base16"
-
+activate :syntax
 activate :directory_indexes
 
 # Methods defined in the helpers block are available in templates
