@@ -24,13 +24,11 @@ Logstash up with Elasticsearch.
 ##### Mac
 
 If you're on a mac, I highly recommend using [Homebrew](http://brew.sh). If you
-don't have it installed already, you can paste the following into your terminal
-to install it[^1]
-
-[^1]: But don't take my word for it, follow the instructions on [their website](http://brew.sh)
+don't have it installed already, you can follow the instructions [their website](http://brew.sh)
+to install it. Once you have it installed, run the command below to get Logstash:
 
 ```sh
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew install logstash
 ```
 
 ##### Linux
@@ -163,10 +161,10 @@ There are a few key concepts here:
 
 * `task_id` is the unique identifier for your aggregation
 * `map` is your persistent data variable across logs
-* `event` is the data tied to a specific log[^2]
+* `event` is the data tied to a specific log[^1]
 * `code` is how you'll be manipulating data in `map` and `event`. It takes Ruby code.
 
-[^2]: Like `event['timestamp']` or `event['file']` in our output above
+[^1]: Like `event['timestamp']` or `event['file']` in our output above
 
 Your aggregation starting point should create the map. Subsequent aggregations
 should update that map, as you want that data to persist. Finally, the last
@@ -257,12 +255,12 @@ up Elasticsearch and the [`elasticsearch`](https://www.elastic.co/guide/en/logst
 plugin.
 
 For Linux, there's an official guide [here](https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-repositories.html).
-On OSX, you're just a `brew install elasticsearch`[^3] away!
+On OSX, you're just a `brew install elasticsearch`[^2] away!
 
 Here's all you have
 to enter to get this stuff to work with Elasticsearch:
 
-[^3]: Isn't Homebrew great?
+[^2]: Isn't Homebrew great?
 
 ```rb
 output {
