@@ -3,26 +3,28 @@
   from: February 2016
   to: Present
   bullets:
-    - Driving test driven development, unified code standards and streamlined deployment
+    - Driving test driven development with Mocha, unified code standards using ESLint and streamlined deployment with OneOps and Capistrano
+    - Teaching team about new Javascript ES6 features and how to use them, and refactoring techniques
+    - Built a monitoring system using React, Sinatra, Elasticsearch and Logstash to ensure 100% uptime of an image derivative generator
 
 - company: WCC LLC.
   title: Tools & Process Developer at Walmart.com
   from: January 2015
   to: February 2016
   bullets:
-    - Proactively scoped, developed and maintained a toolsuite used by over 100 people across multiple departments that resulted in a yearly value savings of over $1.7MM
-    - Built an image derivative generator that supports front-end product imagery across Walmart.com and has created over 50MM images to date
+    - Proactively scoped, developed and maintained a Rails tool-suite used by over 100 people across multiple departments that resulted in a yearly value savings of over $1.7MM
+    - Built an image derivative generator using ImageMagick and Ruby that supports front-end product imagery across Walmart.com and has created over 50MM images to date
     - Provided technical consulting as well as detailed requirements on vendor solutions that resulted in workflow enhancements
-    - Developed streamlined processes that improved reliability and efficiency in imagery procurement from third parties
+    - Developed streamlined processes using shell scripts and cron jobs that improved reliability and efficiency in imagery procurement from third parties
 
 - company: WCC LLC.
   title: Site Merchandiser at Walmart.com
   from: October 2013
   to: January 2015
   bullets:
-    - Drove consistency in best practices by developing and sharing tools, as well as technical knowledge with partners on the site merchandising team
-    - Coordinated with cross-functional partners, ensuring both business goals and customer needs were met consistently and within deadlines
-    - Improved efficiency in processes surrounding creation, distribution and deployment of content by as part of a task force aimed at improving project management tools
+    - Developed tools for my peers using Excel Macros and PHP that drove efficiency, improved accuracy and increased ability to drive sales
+    - Consulted and advised on business tool creation, working with internal and external software providers on quality assurance (QA)
+    - Trained my peers on best practices for using business tools effectively, teaching in detail about Google Chrome's console and Sublime Text
 
 - company: Walmart
   title: Marketing Intern
