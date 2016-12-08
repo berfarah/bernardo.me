@@ -1,5 +1,5 @@
 .welcome
-  img.left src="/images/bernardo.png"
+  = image_tag "/images/bernardo.png", class: "left"
   h2
     ' Hi, I am
     strong Bernardo Farah
@@ -12,15 +12,15 @@
 
 .nav-container: nav.nav
   ul.nav-left
-    li: a.about href="mailto:hi@bernardo.me"
+    li = link_to "mailto:hi@bernardo.me", class: :about
       i.icon.icon-envelope
       | Email
-    li: a.resume href="/resume"
+    li = link_to "/resume/index.html", class: :resume, relative: true
       i.icon.icon-file-text
       | R&eacute;sum&eacute;
   ul.nav-right
     - data.socialmedia.each do |icon, media|
-      li: a class="#{icon}" href=media.url target="_blank"
+      li = link_to media.url, target: "_blank", class: icon
         i class="icon icon-#{icon}"
         = media.name
 
@@ -28,5 +28,5 @@
   h4 Blog Posts
   ul
     - blog.articles[0..5].each do |article|
-      li: a href=article.url
+      li = link_to article.path, relative: true
         h5 = article.title

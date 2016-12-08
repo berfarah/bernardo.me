@@ -274,4 +274,4 @@ output {
 }
 ```
 
-And that's it! Enjoy your setup! Thanks for reading, folks! If you'd like to see the full logstash file, you can find that [here](/blog/2016/03/17/forwarding-logs-with-logstash/logstash.conf).
+And that's it! Enjoy your setup! Thanks for reading, folks! If you'd like to see the full logstash file, you can find that [here](logstash.conf).
