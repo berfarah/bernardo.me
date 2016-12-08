@@ -46,6 +46,12 @@ activate :blog do |blog|
   blog.layout = 'article_layout'
 end
 
+activate :deploy do |deploy|
+  deploy.method = :git
+  deploy.branch = 'gh-pages'
+  deploy.build_before = true
+end
+
 set :markdown_engine, :redcarpet
 set :markdown, fenced_code_blocks: true, smartypants: true, footnotes: true,
                strikethrough: true, highlight: true, autolink: true,
