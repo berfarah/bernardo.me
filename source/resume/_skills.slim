@@ -5,5 +5,5 @@ h4 Skills
       - slice.each do |type, skills|
         div
           h5 = type.capitalize
-          p = sentence(skills)
-        
+          p = skills.to_sentence
+
