@@ -1,14 +1,29 @@
-- company: WCC LLC.
-  title: Software Developer at Walmart.com
-  from: February 2016
+- company: CoverHound
+  title: Lead Software Engineer
+  from: November 2016
   to: Present
+  bullets:
+  - Tech lead for project with strategic partner
+
+- company: CoverHound
+  title: Software Engineer
+  from: June 2016
+  to: November 2016
+  bullets:
+  - Extracted reusable code into gems, using continuous integration to test them (published on rubygems.org)
+  - Architected and wrote software services responsible for communicating with third-party APIs
+
+- company: Walmart.com
+  title: Software Developer
+  from: February 2016
+  to: June 2016
   bullets:
     - Driving test driven development with Mocha, unified code standards using ESLint and streamlined deployment with OneOps and Capistrano
     - Teaching team about new Javascript ES6 features and how to use them, and refactoring techniques
     - Built a monitoring system using React, Sinatra, Elasticsearch and Logstash to ensure 100% uptime of an image derivative generator
 
-- company: WCC LLC.
-  title: Tools & Process Developer at Walmart.com
+- company: Walmart.com
+  title: Tools & Process Developer
   from: January 2015
   to: February 2016
   bullets:
@@ -17,22 +32,14 @@
     - Provided technical consulting as well as detailed requirements on vendor solutions that resulted in workflow enhancements
     - Developed streamlined processes using shell scripts and cron jobs that improved reliability and efficiency in imagery procurement from third parties
 
-- company: WCC LLC.
-  title: Site Merchandiser at Walmart.com
+- company: Walmart.com
+  title: Site Merchandiser
   from: October 2013
   to: January 2015
   bullets:
     - Developed tools for my peers using Excel Macros and PHP that drove efficiency, improved accuracy and increased ability to drive sales
     - Consulted and advised on business tool creation, working with internal and external software providers on quality assurance (QA)
     - Trained my peers on best practices for using business tools effectively, teaching in detail about Google Chrome's console and Sublime Text
-
-- company: Walmart
-  title: Marketing Intern
-  from: June 2012
-  to: June 2013
-  bullets:
-    - Managed content for Walmart‘s weekly email newsletter, reaching 23 million customers
-    - Played advisory role concerning digital capabilities in vendor RFP process
 
 - company: Holy Swiss Cheese
   title: Web Developer & Designer
