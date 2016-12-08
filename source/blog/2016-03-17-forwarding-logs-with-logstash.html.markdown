@@ -1,7 +1,7 @@
 ---
 title: Forwarding logs with Logstash
 date: 2016/03/17
-category: logs, persistence
+tags: logs, persistence
 description: Centralize your data streams effectively using Logstash and Elasticsearch
 ---
 
