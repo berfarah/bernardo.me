@@ -1,0 +1,8 @@
+.latest
+  h4 Latest posts
+  ul.list
+    - (blog.articles[0..5]).each do |article|
+      li.post
+        a href=article.url
+          h3 = article.title
+          time datetime=article.date = article.date.strftime("%B %Y")

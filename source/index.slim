@@ -15,7 +15,7 @@
     li: a.about href="mailto:hi@bernardo.me"
       i.icon.icon-envelope
       | Email
-    li: a.resume href="/resume" target="_blank"
+    li: a.resume href="/resume"
       i.icon.icon-file-text
       | R&eacute;sum&eacute;
   ul.nav-right
@@ -25,7 +25,7 @@
         = media.name
 
 .latest
-  h4 Latest posts
+  h4 Blog Posts
   ul
     - blog.articles[0..5].each do |article|
       li: a href=article.url

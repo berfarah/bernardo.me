@@ -24,3 +24,50 @@
   text-align: center;
   margin: 2rem auto;
 }
+
+.list {
+  @include outer-container(35em);
+
+  .post {
+    text-align: center;
+    &:before {
+      width: 5rem;
+      background: $orange;
+      height: 1px;
+      margin: 2rem auto;
+      content: '';
+      display: block;
+    }
+    &:first-child:before {
+      display: none;
+    }
+
+    p {
+      text-align: center;
+    }
+
+    h3 {
+      margin: 0.5rem;
+    }
+
+    a {
+      display: block;
+
+      &:hover h3 {
+        color: $orange;
+      }
+    }
+
+    a time {
+      color: $grey-dark;
+    }
+    // border-top: 1px solid $orange;
+    // padding-top: 1rem;
+    // margin-bottom: 1rem;
+  }
+  // @include outer-container;
+  //
+  // .post {
+  //   @include span-columns(6);
+  // }
+}
