@@ -28,5 +28,11 @@
   h4 Blog Posts
   ul
     - blog.articles[0..5].each do |article|
-      li = link_to article.path, relative: true
-        h5 = article.title
+      - if url = article.metadata[:page]["href"]
+        li = link_to url, target: :_blank
+          h5
+            = article.title
+            i.icon.icon-external-link
+      - else
+        li = link_to article.path, relative: true
+          h5 = article.title
