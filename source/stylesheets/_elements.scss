@@ -33,8 +33,9 @@
 
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  justify-content: space-between;
+  justify-content: space-around;
+    @include media($medium-screen-up) { justify-content: space-between; }
+
   list-style: none;
 
   &:after {
