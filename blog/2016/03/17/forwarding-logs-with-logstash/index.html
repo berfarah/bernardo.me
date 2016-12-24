@@ -1,0 +1,246 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="width=device-width, initial-scape=1.0" name="viewport" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><title>Forwarding logs with Logstash - Bernardo Farah</title><meta content="Hi, I am Bernardo Farah - a mix of Swiss and Brazilian, a developer, an amateur composer, and a tech enthusiast" name="description" /><link href="../../../../../favicon.ico" rel="icon" type="image/ico" /><link href="../../../../../stylesheets/all.css" rel="stylesheet" /></head><body class="blog blog_2016 blog_2016_03 blog_2016_03_17 blog_2016_03_17_forwarding-logs-with-logstash blog_2016_03_17_forwarding-logs-with-logstash_index"><header class="logo"><h1 class="bernardo bernardo-main"><a href="../../../../../">Bernardo<span class="accent">.</span></a></h1></header><section class="blog"><article><div class="page-title"><span><h1>Forwarding logs with Logstash</h1></span></div><p><a target="_blank" href="https://www.elastic.co/products/logstash">Logstash</a> is a log forwarding utility
+that can help you centralize your data streams. Last week, I set up a cluster of
+image derivative generators to forward their logs to Logstash. Now I have a
+front-end layer on top of <a target="_blank" href="https://www.elastic.co/products/elasticsearch">Elasticsearch</a>
+that lets me query my logs quickly! There were a few things I had to figure out
+along the way that I will share with you.</p>
+
+<h3 id="objective">Objective</h3>
+
+<p>We will set up Logstash to filter out relevant information from our logs, and
+consolidate logs pertaining to the same item. Our input for the purpose of this
+exercise will be <code>stdin</code> from the terminal, and our output will be <code>stdout</code> so
+can follow along with intended outputs. We will then briefly cover how to set
+Logstash up with Elasticsearch.</p>
+
+<h3 id="installing-logstash">Installing Logstash</h3>
+
+<h5 id="mac">Mac</h5>
+
+<p>If you&rsquo;re on a mac, I highly recommend using <a target="_blank" href="http://brew.sh">Homebrew</a>. If you
+don&rsquo;t have it installed already, you can follow the instructions <a target="_blank" href="http://brew.sh">their website</a>
+to install it. Once you have it installed, run the command below to get Logstash:</p>
+<pre class="highlight shell"><code>brew install logstash
+</code></pre>
+<h5 id="linux">Linux</h5>
+
+<p>If you&rsquo;re on Linux, you may need to install Java first, and the Logstash repository next.</p>
+<pre class="highlight shell"><code>sudo add-apt-repository -y ppa:webupd8team/java  <span class="c"># Add the Oracle Java PPA to apt</span>
+sudo apt-get update                              <span class="c"># Update the apt package database</span>
+sudo apt-get install oracle-java8-installer      <span class="c"># Install Java</span>
+
+sudo apt-get install logstash
+</code></pre>
+<h3 id="configuring-logstash">Configuring Logstash</h3>
+
+<p>Once we have that, we need to define our <a target="_blank" href="https://www.elastic.co/guide/en/logstash/2.2/input-plugins.html">inputs</a>
+and <a target="_blank" href="https://www.elastic.co/guide/en/logstash/2.2/output-plugins.html">outputs</a>.
+All we are doing here is forwarding our log file to stdout to see what kind of
+output we will be getting.</p>
+<pre class="highlight ruby"><code><span class="c1"># logstash.conf</span>
+
+<span class="c1"># For the input, we're going to be pasting into the terminal</span>
+<span class="n">input</span> <span class="p">{</span>
+  <span class="n">stdin</span> <span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="c1"># The output will be to stdout with a debug codec</span>
+<span class="n">output</span> <span class="p">{</span>
+  <span class="n">stdout</span> <span class="p">{</span>
+    <span class="n">codec</span> <span class="o">=&gt;</span> <span class="n">rubydebug</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Let&rsquo;s assume that this is what our log looks like:</p>
+<pre class="highlight shell"><code><span class="c"># path/to/file.log</span>
+
+<span class="o">[</span>2016-03-19T20:36:06Z] @foo.jpg: Found file!
+<span class="o">[</span>2016-03-19T20:36:07Z] @foo.jpg: Cutting derivative 500x500
+<span class="o">[</span>2016-03-19T20:36:07Z] @foo.jpg: Cutting derivative 400x400
+<span class="o">[</span>2016-03-19T20:36:07Z] @foo.jpg: Cutting derivative 300x300
+<span class="o">[</span>2016-03-19T20:36:08Z] @foo.jpg: Cutting derivative 200x200
+<span class="o">[</span>2016-03-19T20:36:08Z] @foo.jpg: Cutting derivative 100x100
+<span class="o">[</span>2016-03-19T20:36:09Z] @foo.jpg: Backing up to /bar/baz
+<span class="o">[</span>2016-03-19T20:36:10Z] @foo.jpg: It took 4.15s to <span class="nb">complete</span>!
+</code></pre>
+<p>Now we&rsquo;ll run logstash with our config file</p>
+<pre class="highlight shell"><code>logstash --config logstash.conf
+</code></pre>
+<p>Our output should look something like this:</p>
+<pre class="highlight ruby"><code><span class="p">{</span>
+       <span class="s2">"message"</span> <span class="o">=&gt;</span> <span class="s2">"[2016-03-19T20:36:10Z] @foo.jpg: It took 4.15s to complete!"</span><span class="p">,</span>
+      <span class="s2">"@version"</span> <span class="o">=&gt;</span> <span class="s2">"1"</span><span class="p">,</span>
+    <span class="s2">"@timestamp"</span> <span class="o">=&gt;</span> <span class="s2">"2016-03-20T06:26:00.646Z"</span><span class="p">,</span>
+          <span class="s2">"host"</span> <span class="o">=&gt;</span> <span class="s2">"battlestation.local"</span>
+<span class="p">}</span>
+</code></pre>
+<h5 id="adding-filters">Adding filters</h5>
+
+<p>Now let&rsquo;s start adding <a target="_blank" href="https://www.elastic.co/guide/en/logstash/current/filter-plugins.html">filters</a>!
+I&rsquo;m going to start with <a target="_blank" href="https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html"><code>grok</code></a> to parse out our data.
+This is where that regex-foo comes in really handy!</p>
+<pre class="highlight ruby"><code><span class="c1"># logstash.conf</span>
+
+<span class="n">filter</span> <span class="p">{</span>
+  <span class="n">grok</span> <span class="p">{</span>
+    <span class="c1"># Here we are parsing out our timestamp, file and the rest of the message</span>
+    <span class="n">match</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s2">"message"</span><span class="p">,</span> <span class="s2">"</span><span class="se">\[</span><span class="s2">(?&lt;timestamp&gt;.+)</span><span class="se">\]</span><span class="s2"> @(?&lt;file&gt;[^:]+): (?&lt;rest&gt;.+)"</span><span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>You&rsquo;ll see that now you&rsquo;re getting the fields that you&rsquo;re <code>grok</code>ing parsed out:</p>
+<pre class="highlight ruby"><code><span class="p">{</span>
+       <span class="s2">"message"</span> <span class="o">=&gt;</span> <span class="s2">"[2016-03-19T20:36:10Z] @foo.jpg: It took 4.15s to complete!"</span><span class="p">,</span>
+      <span class="s2">"@version"</span> <span class="o">=&gt;</span> <span class="s2">"1"</span><span class="p">,</span>
+    <span class="s2">"@timestamp"</span> <span class="o">=&gt;</span> <span class="s2">"2016-03-20T07:12:26.709Z"</span><span class="p">,</span>
+          <span class="s2">"host"</span> <span class="o">=&gt;</span> <span class="s2">"battlestation.local"</span><span class="p">,</span>
+     <span class="s2">"timestamp"</span> <span class="o">=&gt;</span> <span class="s2">"2016-03-19T20:36:10Z"</span><span class="p">,</span>
+          <span class="s2">"file"</span> <span class="o">=&gt;</span> <span class="s2">"foo.jpg"</span><span class="p">,</span>
+          <span class="s2">"rest"</span> <span class="o">=&gt;</span> <span class="s2">"It took 4.15s to complete!"</span>
+<span class="p">}</span>
+</code></pre>
+<p>Let&rsquo;s re-assign that <code>timestamp</code> to <code>@timestamp</code> using <a target="_blank" href="https://www.elastic.co/guide/en/logstash/current/plugins-filters-date.html">date</a>.</p>
+<pre class="highlight ruby"><code><span class="n">filter</span> <span class="p">{</span>
+  <span class="c1"># ...</span>
+  <span class="n">date</span> <span class="p">{</span>
+    <span class="n">match</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s2">"timestamp"</span><span class="p">,</span> <span class="s2">"ISO8601"</span><span class="p">]</span>
+    <span class="n">remove_field</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s2">"timestamp"</span><span class="p">]</span> <span class="c1"># We reassigned it so we don't need it anymore</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Now you&rsquo;ll find that our timestamp matches the log&rsquo;s timestamp, instead of the
+time it was parsed.</p>
+
+<h5 id="using-aggregate">Using Aggregate</h5>
+
+<p>To proceed, we&rsquo;ll have to install a plugin called <a target="_blank" href="https://www.elastic.co/guide/en/logstash/current/plugins-filters-aggregate.html"><code>aggregate</code></a>, so let&rsquo;s
+find the location of the Logstash binaries.</p>
+<pre class="highlight shell"><code><span class="c"># This command should show you where the logstash binary is linked from</span>
+ls -l <span class="k">$(</span>which logstash<span class="k">)</span> <span class="c"># =&gt; /usr/local/Cellar/logstash/2.2.2/bin/logstash</span>
+
+<span class="c"># The binary should be called logstash-plugin/plugin</span>
+/usr/local/Cellar/logstash/2.2.2/bin/logstash-plugin install logstash-filter-aggregate
+</code></pre>
+<p>There are a few key concepts here:</p>
+
+<ul>
+<li><code>task_id</code> is the unique identifier for your aggregation</li>
+<li><code>map</code> is your persistent data variable across logs</li>
+<li><code>event</code> is the data tied to a specific log<sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup></li>
+<li><code>code</code> is how you&rsquo;ll be manipulating data in <code>map</code> and <code>event</code>. It takes Ruby code.</li>
+</ul>
+
+<p>Your aggregation starting point should create the map. Subsequent aggregations
+should update that map, as you want that data to persist. Finally, the last
+aggregation should take that <code>map</code> and put it into the <code>event</code>.</p>
+
+<p>Let&rsquo;s return to the example at hand. I want to start at <code>Found file!</code> and end at
+<code>It took 4.15s to complete!</code>. In between, I want to keep track of all derivatives
+that were made for a certain file.</p>
+<pre class="highlight ruby"><code><span class="n">filter</span> <span class="p">{</span>
+  <span class="c1"># Our starting point</span>
+  <span class="k">if</span> <span class="p">[</span><span class="n">message</span><span class="p">]</span> <span class="o">=~</span> <span class="s2">"Found file!"</span> <span class="p">{</span>
+    <span class="n">aggregate</span> <span class="p">{</span>
+      <span class="n">task_id</span> <span class="o">=&gt;</span> <span class="s2">"%{file}"</span>   <span class="c1"># We set the key to our file name</span>
+      <span class="n">code</span> <span class="o">=&gt;</span> <span class="s2">""</span>             <span class="c1"># This part is required, even if we leave it empty</span>
+      <span class="n">map_action</span> <span class="o">=&gt;</span> <span class="s2">"create"</span> <span class="c1"># Our map variable is created</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="c1"># For all derivatives, we want to ensure that we record that their size</span>
+  <span class="k">if</span> <span class="p">[</span><span class="n">message</span><span class="p">]</span> <span class="o">=~</span> <span class="s2">"Cutting"</span> <span class="p">{</span>
+    <span class="n">grok</span> <span class="p">{</span>
+      <span class="n">match</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s2">"rest"</span><span class="p">,</span> <span class="s2">"Cutting derivative (?&lt;derivative&gt;.+)"</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="n">aggregate</span> <span class="p">{</span>
+      <span class="n">task_id</span> <span class="o">=&gt;</span> <span class="s2">"%{file}"</span>
+      <span class="c1"># We have to manually add our derivative to the map.</span>
+      <span class="c1"># I'm making a new array if map['derivatives'] doesn't</span>
+      <span class="c1"># exist and adding our derivatives to it</span>
+      <span class="n">code</span> <span class="o">=&gt;</span> <span class="s2">"map['derivatives'] ||= []; map['derivatives'] &lt;&lt; event['derivative']"</span>
+      <span class="n">map_action</span> <span class="o">=&gt;</span> <span class="s2">"update"</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="c1"># On this final message, we want to capture our time</span>
+  <span class="c1"># and any data from previous logs</span>
+  <span class="k">if</span> <span class="p">[</span><span class="n">message</span><span class="p">]</span> <span class="o">=~</span> <span class="s2">"It took"</span> <span class="p">{</span>
+    <span class="n">grok</span> <span class="p">{</span>
+      <span class="n">match</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s2">"rest"</span><span class="p">,</span> <span class="s2">"It took (?&lt;duration&gt;[</span><span class="se">\d\.</span><span class="s2">]+)"</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="n">aggregate</span> <span class="p">{</span>
+      <span class="n">task_id</span> <span class="o">=&gt;</span> <span class="s2">"%{file}"</span>
+      <span class="c1"># Now we take all that map data and put it on the event</span>
+      <span class="c1"># so it becomes part of this final message</span>
+      <span class="n">code</span> <span class="o">=&gt;</span> <span class="s2">"event['derivatives'] = map['derivatives']"</span>
+      <span class="n">map_action</span> <span class="o">=&gt;</span> <span class="s2">"update"</span>
+      <span class="n">end_of_task</span> <span class="o">=&gt;</span> <span class="kp">true</span>     <span class="c1"># Ends the updates of the map</span>
+      <span class="n">timeout</span> <span class="o">=&gt;</span> <span class="mi">120</span>          <span class="c1"># It has no timeout by default</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>If you run that again via <code>logstash -f logstash.conf</code>, you should see something
+like this:</p>
+<pre class="highlight ruby"><code><span class="p">{</span>
+        <span class="s2">"message"</span> <span class="o">=&gt;</span> <span class="s2">"[2016-03-19T20:36:10Z] @foo.jpg: It took 4.15s to complete!"</span><span class="p">,</span>
+       <span class="s2">"@version"</span> <span class="o">=&gt;</span> <span class="s2">"1"</span><span class="p">,</span>
+     <span class="s2">"@timestamp"</span> <span class="o">=&gt;</span> <span class="s2">"2016-03-19T20:36:10.000Z"</span><span class="p">,</span>
+           <span class="s2">"host"</span> <span class="o">=&gt;</span> <span class="s2">"battlestation.local"</span><span class="p">,</span>
+           <span class="s2">"file"</span> <span class="o">=&gt;</span> <span class="s2">"foo.jpg"</span><span class="p">,</span>
+           <span class="s2">"rest"</span> <span class="o">=&gt;</span> <span class="s2">"It took 4.15s to complete!"</span><span class="p">,</span>
+           <span class="s2">"duration"</span> <span class="o">=&gt;</span> <span class="s2">"4.15"</span><span class="p">,</span>
+    <span class="s2">"derivatives"</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="s2">"500x500"</span><span class="p">,</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="s2">"400x400"</span><span class="p">,</span>
+        <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="s2">"300x300"</span><span class="p">,</span>
+        <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="s2">"200x200"</span><span class="p">,</span>
+        <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="s2">"100x100"</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+<p>Fantastic, but I don&rsquo;t actually want all of the logs, now that this last one is
+telling me everything I need. We can use the <a target="_blank" href="https://www.elastic.co/guide/en/logstash/current/plugins-filters-drop.html"><code>drop</code></a>
+filter and stick to just this last one.</p>
+
+<h3 id="sending-it-all-to-elasticsearch">Sending it all to Elasticsearch</h3>
+
+<p>One last thing. It&rsquo;s nice to aggregate all of this information, but it would be
+even nicer if it could all be searchable in a centralized location. So let&rsquo;s set
+up Elasticsearch and the <a target="_blank" href="https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html"><code>elasticsearch</code></a>
+plugin.</p>
+
+<p>For Linux, there&rsquo;s an official guide <a target="_blank" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-repositories.html">here</a>.
+On OSX, you&rsquo;re just a <code>brew install elasticsearch</code><sup id="fnref2"><a href="#fn2" rel="footnote">2</a></sup> away!</p>
+
+<p>Here&rsquo;s all you have
+to enter to get this stuff to work with Elasticsearch:</p>
+<pre class="highlight ruby"><code><span class="n">output</span> <span class="p">{</span>
+  <span class="c1"># ...</span>
+
+  <span class="n">elasticsearch</span> <span class="p">{</span>
+    <span class="c1"># This plugin chooses localhost:9200 by default</span>
+    <span class="c1"># I like to override the index for each resource</span>
+    <span class="n">index</span> <span class="o">=&gt;</span> <span class="s2">"derivatives"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>And that&rsquo;s it! Enjoy your setup! Thanks for reading, folks! If you&rsquo;d like to see the full logstash file, you can find that <a target="_blank" href="logstash.conf">here</a>.</p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p>Like <code>event[&#39;timestamp&#39;]</code> or <code>event[&#39;file&#39;]</code> in our output above&nbsp;<a href="#fnref1" rev="footnote">&#8617;</a></p>
+</li>
+
+<li id="fn2">
+<p>Isn&rsquo;t Homebrew great?&nbsp;<a href="#fnref2" rev="footnote">&#8617;</a></p>
+</li>
+
+</ol>
+</div>
+</article></section></body></html>
