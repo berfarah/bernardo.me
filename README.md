@@ -10,6 +10,10 @@ Run the server
 
     bundle exec middleman server
 
+## Build assets
+
+    rake build
+
 ## Deployment
 
-    bundle exec middleman deploy
+    rake deploy

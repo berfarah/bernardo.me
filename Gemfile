@@ -11,7 +11,7 @@ gem "neat", "~> 1.8"
 gem "slim", "~> 3.0.7"
 
 gem "middleman-blog", "~> 3.5.3"
-gem "middleman-deploy", "~> 1.0.0"
+gem "middleman-gh-pages"
 gem "middleman-syntax"
 gem "redcarpet", "~> 3.3"
 gem "font-awesome-sass", "~> 4.7.0"
