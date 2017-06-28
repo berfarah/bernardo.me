@@ -16,6 +16,7 @@ set :markdown, fenced_code_blocks: true, smartypants: true, footnotes: true,
 
 activate :syntax
 activate :directory_indexes
+activate :asset_hash
 
 set :fonts_dir, "fonts"
 set :css_dir, "stylesheets"
@@ -24,6 +25,4 @@ set :images_dir, "images"
 
 configure :build do
   activate :minify_css
-  activate :relative_assets
-  set :relative_links, true
 end
