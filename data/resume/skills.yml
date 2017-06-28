@@ -1,8 +1,8 @@
 languages:
+  - Ruby
+  - Javascript
   - HTML & CSS
   - SASS/LESS/Stylus
-  - Javascript
-  - Ruby
   - Go
   - SQL
 
@@ -19,4 +19,5 @@ methodologies:
 
 systems:
   - Docker
+  - Ansible
   - OneOps

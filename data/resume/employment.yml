@@ -1,9 +1,20 @@
 - company: CoverHound
-  title: Lead Software Engineer
-  from: November 2016
+  title: Senior Director of Engineering
+  from: March 2017
   to: Present
   bullets:
-  - Tech lead for project with strategic partner
+  - Coaching and mentoring direct reports, helping them improve as engineers and focusing on how best to achieve their goals
+  - Scaling up the engineering team to meet product workforce demand while retaining culture of autonomy and freedom
+
+- company: CoverHound
+  title: Lead Software Engineer
+  from: November 2016
+  to: March 2017
+  bullets:
+  - Led a team of engineers in creating a full fledged insurance website MVP (including customer and servicing/sales portals) in the span of 3 months
+  - Created best practices and reusable paradigms for the team, follwing a service-oriented design
+  - Worked in tight partnership with the Product Manager of the project to keep expectations and scope (dictated by a partner) in check
+  - Actively contributed to hiring through participation in interviews as well as the creation and improvement of interview practices
 
 - company: CoverHound
   title: Software Engineer
@@ -31,19 +42,3 @@
     - Built an image derivative generator using ImageMagick and Ruby that supports front-end product imagery across Walmart.com and has created over 50MM images to date
     - Provided technical consulting as well as detailed requirements on vendor solutions that resulted in workflow enhancements
     - Developed streamlined processes using shell scripts and cron jobs that improved reliability and efficiency in imagery procurement from third parties
-
-- company: Walmart.com
-  title: Site Merchandiser
-  from: October 2013
-  to: January 2015
-  bullets:
-    - Developed tools for my peers using Excel Macros and PHP that drove efficiency, improved accuracy and increased ability to drive sales
-    - Consulted and advised on business tool creation, working with internal and external software providers on quality assurance (QA)
-    - Trained my peers on best practices for using business tools effectively, teaching in detail about Google Chrome's console and Sublime Text
-
-- company: Holy Swiss Cheese
-  title: Web Developer & Designer
-  from: April 2008
-  to: April 2012
-  bullets:
-    - Worked with JungleDrums Ltd., Fugata Quintet LLP. Dancing Bee Ltd. and S2 Games
