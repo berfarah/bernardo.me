@@ -1,0 +1,111 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="width=device-width, initial-scape=1.0" name="viewport" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><title>Streaming CSV with Rails - Bernardo Farah</title><meta content="Hi, I am Bernardo Farah - a mix of Swiss and Brazilian, a developer, an amateur composer, and a tech enthusiast" name="description" /><link href="../../../../../favicon.ico" rel="icon" type="image/ico" /><link href="../../../../../stylesheets/all.css" rel="stylesheet" /></head><body class="blog blog_2017 blog_2017_06 blog_2017_06_28 blog_2017_06_28_streaming-csv-with-rails blog_2017_06_28_streaming-csv-with-rails_index"><header class="logo"><h1 class="bernardo bernardo-main"><a href="../../../../../">Bernardo<span class="accent">.</span></a></h1></header><section class="blog"><article><div class="page-title"><span><h1>Streaming CSV with Rails</h1></span></div><p>I have run into countless situations where I had to find a way to download
+really large CSV files without closing a connection, so I thought I&rsquo;d take some
+time to share how you can do that!</p>
+
+<h3 id="why-do-i-need-to-stream-a-csv-file">Why do I need to stream a CSV file?</h3>
+
+<p>I have a report that takes 30 seconds to run and I can&rsquo;t email because I don&rsquo;t
+have access to that information. After 30 seconds, browsers and servers alike
+tend to assume the connection is dead and kill it. This will result in 504
+Gateway issues, frustrating users.</p>
+
+<p>An easy workaround to this is to tell the connection &ldquo;hey, I&rsquo;m workin&rsquo; here&rdquo; and
+continously send chunks of a CSV file down the pipe.</p>
+
+<h3 id="what-is-a-streaming-chunked-response">What is a streaming (chunked) response?</h3>
+
+<p>Rather than waiting for the full contents to be available before showing the
+client our work, we&rsquo;re telling them upfront &ldquo;This is WIP, don&rsquo;t judge it yet&rdquo;
+and feeding them small pieces of CSV, along with the chunk size so they know it
+wasn&rsquo;t accidental.
+<img alt="Chunked Transfer Diagram" src="../../../../../images/2017-06-28-streaming-csv-with-rails/chunked-transfer.png" /></p>
+
+<p>Once the download is done, the server tells the client it&rsquo;s done, the client
+closes the connection and takes the CSV pieces and squashes them together into
+one file.</p>
+
+<h3 id="ok-got-it-so-how-do-i-do-it">Ok, got it. So how do I do it?</h3>
+
+<p>Rails runs Rack under the hood for its server needs. Rack will infer based off
+of these pieces of information that you want to stream a file:</p>
+<pre class="highlight ruby"><code><span class="c1"># Headers</span>
+<span class="n">headers</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="s2">"Content-Length"</span><span class="p">)</span>
+<span class="n">headers</span><span class="p">[</span><span class="s2">"Cache-Control"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"no-cache"</span>
+<span class="c1"># Body</span>
+<span class="nb">self</span><span class="p">.</span><span class="nf">response_body</span> <span class="o">=</span> <span class="o">&lt;</span><span class="c1">#Enumerable&gt;</span>
+<span class="n">response</span><span class="p">.</span><span class="nf">status</span> <span class="o">=</span> <span class="mi">200</span>
+</code></pre>
+<p>Now, if you pass an array as your response body, you&rsquo;re still waiting for the
+array to complete before rendering, so what you want is an object that can
+evaluate whilst filling up the queue. Luckily, Rails ships with an object that
+enables this:</p>
+<pre class="highlight ruby"><code><span class="c1"># The insides of this block don't execute until Rack</span>
+<span class="c1"># yields to it at the end of the response cycle</span>
+<span class="n">enum</span> <span class="o">=</span> <span class="no">Enumerator</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">yielder</span><span class="o">|</span>
+  <span class="n">pages</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">page</span><span class="o">|</span>
+    <span class="n">yielder</span> <span class="o">&lt;&lt;</span> <span class="n">slow_transaction</span><span class="p">.</span><span class="nf">body</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+<p>One small gotcha is that you need to be running HTTP 1.1+ in order to support
+chunked streaming - oh, and the WEBrick server won&rsquo;t support this.</p>
+
+<p><img alt="Screen capture with streaming text" src="../../../../../images/2017-06-28-streaming-csv-with-rails/step-1.gif" /></p>
+
+<p>But wait, this isn&rsquo;t quite what we want. This doesn&rsquo;t look like a CSV, and it&rsquo;s
+not downloading like we want. Plus, we want to have a filename here.</p>
+
+<p>Let&rsquo;s put in some additional headers and get all of that:</p>
+<pre class="highlight ruby"><code><span class="n">headers</span><span class="p">[</span><span class="s2">"Content-Type"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"text/csv"</span>
+<span class="n">headers</span><span class="p">[</span><span class="s2">"Content-Disposition"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"attachment; filename=</span><span class="se">\"</span><span class="s2">example.csv</span><span class="se">\"</span><span class="s2">"</span>
+</code></pre>
+<p>Much better!</p>
+
+<p><img alt="Screen capture with streaming CSV download" src="../../../../../images/2017-06-28-streaming-csv-with-rails/step-2.gif" /></p>
+
+<p>Finally, let&rsquo;s make sure nothing is buffered by proxy servers:</p>
+<pre class="highlight ruby"><code><span class="n">headers</span><span class="p">[</span><span class="s2">"X-Accel-Buffering"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"no"</span>
+</code></pre>
+<p><img alt="Happiness" src="../../../../../images/2017-06-28-streaming-csv-with-rails/happiness.gif" /></p>
+
+<p>Sweet, right? Here&rsquo;s a fully functional controller at work:</p>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'csv'</span>
+
+<span class="k">class</span> <span class="nc">StreamingController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">download</span>
+    <span class="c1"># Tell Rack to stream the content</span>
+    <span class="n">headers</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="s2">"Content-Length"</span><span class="p">)</span>
+
+    <span class="c1"># Don't cache anything from this generated endpoint</span>
+    <span class="n">headers</span><span class="p">[</span><span class="s2">"Cache-Control"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"no-cache"</span>
+
+    <span class="c1"># Tell the browser this is a CSV file</span>
+    <span class="n">headers</span><span class="p">[</span><span class="s2">"Content-Type"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"text/csv"</span>
+
+    <span class="c1"># Make the file download with a specific filename</span>
+    <span class="n">headers</span><span class="p">[</span><span class="s2">"Content-Disposition"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"attachment; filename=</span><span class="se">\"</span><span class="s2">example.csv</span><span class="se">\"</span><span class="s2">"</span>
+
+    <span class="c1"># Don't buffer when going through proxy servers</span>
+    <span class="n">headers</span><span class="p">[</span><span class="s2">"X-Accel-Buffering"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"no"</span>
+
+    <span class="c1"># Set an Enumerator as the body</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">response_body</span> <span class="o">=</span> <span class="n">body</span>
+
+    <span class="c1"># Set the status to success</span>
+    <span class="n">response</span><span class="p">.</span><span class="nf">status</span> <span class="o">=</span> <span class="mi">200</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">body</span>
+    <span class="no">Enumerator</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">yielder</span><span class="o">|</span>
+      <span class="mi">20</span><span class="p">.</span><span class="nf">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">num</span><span class="o">|</span>
+        <span class="nb">sleep</span> <span class="mi">0</span><span class="o">.</span><span class="mo">05</span>
+        <span class="n">yielder</span> <span class="o">&lt;&lt;</span> <span class="no">CSV</span><span class="p">.</span><span class="nf">generate_line</span><span class="p">([</span><span class="n">num</span><span class="p">,</span> <span class="s2">"yay"</span><span class="p">])</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+<p>Thanks for reading! You can find a repo with a working rails application <a target="_blank" href="https://github.com/berfarah/rails-streaming-example">here</a>. If you found this helpful, or would like to give feedback on the above please give me a shout on <a target="_blank" href="https://twitter.com/berfarah">Twitter</a>!</p>
+</article></section></body></html>
