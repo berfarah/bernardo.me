@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="width=device-width, initial-scape=1.0" name="viewport" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><title>Streaming CSV with Rails - Bernardo Farah</title><meta content="Hi, I am Bernardo Farah - a mix of Swiss and Brazilian, a developer, an amateur composer, and a tech enthusiast" name="description" /><link href="../../../../../favicon.ico" rel="icon" type="image/ico" /><link href="../../../../../stylesheets/all.css" rel="stylesheet" /></head><body class="blog blog_2017 blog_2017_06 blog_2017_06_28 blog_2017_06_28_streaming-csv-with-rails blog_2017_06_28_streaming-csv-with-rails_index"><header class="logo"><h1 class="bernardo bernardo-main"><a href="../../../../../">Bernardo<span class="accent">.</span></a></h1></header><section class="blog"><article><div class="page-title"><span><h1>Streaming CSV with Rails</h1></span></div><p>I have run into countless situations where I had to find a way to download
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="width=device-width, initial-scape=1.0" name="viewport" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><title>Streaming CSV with Rails - Bernardo Farah</title><meta content="Hi, I am Bernardo Farah - a mix of Swiss and Brazilian, a developer, an amateur composer, and a tech enthusiast" name="description" /><link href="/favicon.ico" rel="icon" type="image/ico" /><link href="/stylesheets/all-58aec7b4.css" rel="stylesheet" /></head><body class="blog blog_2017 blog_2017_06 blog_2017_06_28 blog_2017_06_28_streaming-csv-with-rails blog_2017_06_28_streaming-csv-with-rails_index"><header class="logo"><h1 class="bernardo bernardo-main"><a href="/">Bernardo<span class="accent">.</span></a></h1></header><section class="blog"><article><div class="page-title"><span><h1>Streaming CSV with Rails</h1></span></div><p>I have run into countless situations where I had to find a way to download
 really large CSV files without closing a connection, so I thought I&rsquo;d take some
 time to share how you can do that!</p>
 
@@ -18,7 +18,7 @@ continously send chunks of a CSV file down the pipe.</p>
 client our work, we&rsquo;re telling them upfront &ldquo;This is WIP, don&rsquo;t judge it yet&rdquo;
 and feeding them small pieces of CSV, along with the chunk size so they know it
 wasn&rsquo;t accidental.
-<img alt="Chunked Transfer Diagram" src="../../../../../images/2017-06-28-streaming-csv-with-rails/chunked-transfer.png" /></p>
+<img alt="Chunked Transfer Diagram" src="/blog/2017/06/28/streaming-csv-with-rails/chunked-transfer-0683ae55.png" /></p>
 
 <p>Once the download is done, the server tells the client it&rsquo;s done, the client
 closes the connection and takes the CSV pieces and squashes them together into
@@ -50,7 +50,7 @@ enables this:</p>
 <p>One small gotcha is that you need to be running HTTP 1.1+ in order to support
 chunked streaming - oh, and the WEBrick server won&rsquo;t support this.</p>
 
-<p><img alt="Screen capture with streaming text" src="../../../../../images/2017-06-28-streaming-csv-with-rails/step-1.gif" /></p>
+<p><img alt="Screen capture with streaming text" src="/blog/2017/06/28/streaming-csv-with-rails/step-1-416a8b83.gif" /></p>
 
 <p>But wait, this isn&rsquo;t quite what we want. This doesn&rsquo;t look like a CSV, and it&rsquo;s
 not downloading like we want. Plus, we want to have a filename here.</p>
@@ -61,12 +61,12 @@ not downloading like we want. Plus, we want to have a filename here.</p>
 </code></pre>
 <p>Much better!</p>
 
-<p><img alt="Screen capture with streaming CSV download" src="../../../../../images/2017-06-28-streaming-csv-with-rails/step-2.gif" /></p>
+<p><img alt="Screen capture with streaming CSV download" src="/blog/2017/06/28/streaming-csv-with-rails/step-2-76100933.gif" /></p>
 
 <p>Finally, let&rsquo;s make sure nothing is buffered by proxy servers:</p>
 <pre class="highlight ruby"><code><span class="n">headers</span><span class="p">[</span><span class="s2">"X-Accel-Buffering"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"no"</span>
 </code></pre>
-<p><img alt="Happiness" src="../../../../../images/2017-06-28-streaming-csv-with-rails/happiness.gif" /></p>
+<p><img alt="Happiness" src="/blog/2017/06/28/streaming-csv-with-rails/happiness-0473b428.gif" /></p>
 
 <p>Sweet, right? Here&rsquo;s a fully functional controller at work:</p>
 <pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'csv'</span>
