@@ -59,16 +59,14 @@ not downloading like we want. Plus, we want to have a filename here.</p>
 <pre class="highlight ruby"><code><span class="n">headers</span><span class="p">[</span><span class="s2">"Content-Type"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"text/csv"</span>
 <span class="n">headers</span><span class="p">[</span><span class="s2">"Content-Disposition"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"attachment; filename=</span><span class="se">\"</span><span class="s2">example.csv</span><span class="se">\"</span><span class="s2">"</span>
 </code></pre>
-<p>Much better!</p>
-
-<p><img alt="Screen capture with streaming CSV download" src="/blog/2017/06/28/streaming-csv-with-rails/step-2-76100933.gif" /></p>
-
 <p>Finally, let&rsquo;s make sure nothing is buffered by proxy servers:</p>
 <pre class="highlight ruby"><code><span class="n">headers</span><span class="p">[</span><span class="s2">"X-Accel-Buffering"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"no"</span>
 </code></pre>
+<p><img alt="Screen capture with streaming CSV download" src="/blog/2017/06/28/streaming-csv-with-rails/step-2-76100933.gif" /></p>
+
 <p><img alt="Happiness" src="/blog/2017/06/28/streaming-csv-with-rails/happiness-0473b428.gif" /></p>
 
-<p>Sweet, right? Here&rsquo;s a fully functional controller at work:</p>
+<p>That was easy! Here&rsquo;s the full controller that&rsquo;s powering this:</p>
 <pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'csv'</span>
 
 <span class="k">class</span> <span class="nc">StreamingController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
@@ -107,5 +105,10 @@ not downloading like we want. Plus, we want to have a filename here.</p>
   <span class="k">end</span>
 <span class="k">end</span>
 </code></pre>
-<p>Thanks for reading! You can find a repo with a working rails application <a target="_blank" href="https://github.com/berfarah/rails-streaming-example">here</a>. If you found this helpful, or would like to give feedback on the above please give me a shout on <a target="_blank" href="https://twitter.com/berfarah">Twitter</a>!</p>
+<p>Thanks for reading! I look forward to hearing about your uses of the above!</p>
+
+<p>You can find a repo with a working rails application
+<a target="_blank" href="https://github.com/berfarah/rails-streaming-example">here</a>. If you found this
+helpful, or would like to give feedback on the above please give me a shout on
+<a target="_blank" href="https://twitter.com/berfarah">Twitter</a>!</p>
 </article></section></body></html>
