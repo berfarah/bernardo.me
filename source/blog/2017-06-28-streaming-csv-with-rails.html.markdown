@@ -75,20 +75,17 @@ headers["Content-Type"] = "text/csv"
 headers["Content-Disposition"] = "attachment; filename=\"example.csv\""
 ```
 
-Much better!
-
-![Screen capture with streaming CSV download](2017-06-28-streaming-csv-with-rails/step-2.gif)
-
 Finally, let's make sure nothing is buffered by proxy servers:
 
 ```rb
 headers["X-Accel-Buffering"] = "no"
 ```
 
+![Screen capture with streaming CSV download](2017-06-28-streaming-csv-with-rails/step-2.gif)
 
 ![Happiness](2017-06-28-streaming-csv-with-rails/happiness.gif)
 
-Sweet, right? Here's a fully functional controller at work:
+That was easy! Here's the full controller that's powering this:
 
 ```rb
 require 'csv'
@@ -130,4 +127,9 @@ class StreamingController < ApplicationController
 end
 ```
 
-Thanks for reading! You can find a repo with a working rails application [here](https://github.com/berfarah/rails-streaming-example). If you found this helpful, or would like to give feedback on the above please give me a shout on [Twitter](https://twitter.com/berfarah)!
+Thanks for reading! I look forward to hearing about your uses of the above!
+
+You can find a repo with a working rails application
+[here](https://github.com/berfarah/rails-streaming-example). If you found this
+helpful, or would like to give feedback on the above please give me a shout on
+[Twitter](https://twitter.com/berfarah)!
