@@ -9,6 +9,8 @@ activate :blog do |blog|
   blog.layout = "article_layout"
 end
 
+activate :imageoptim
+
 set :markdown_engine, :redcarpet
 set :markdown, fenced_code_blocks: true, smartypants: true, footnotes: true,
                strikethrough: true, highlight: true, autolink: true,
