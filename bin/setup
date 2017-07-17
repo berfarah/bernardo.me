@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+
+brew install advancecomp gifsicle jhead jpegoptim jpeg optipng pngcrush pngquant jonof/kenutils/pngout
+bundle install
