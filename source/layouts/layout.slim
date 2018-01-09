@@ -21,6 +21,7 @@ html
 
     meta name="description" content=meta.description
     = favicon_tag "/favicon.ico"
+    = stylesheet_link_tag "all"
 
   body class=page_classes
     header.logo
@@ -30,4 +31,3 @@ html
           span.accent .
 
     = yield
-    = stylesheet_link_tag "all"
