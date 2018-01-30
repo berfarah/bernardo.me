@@ -1,12 +1,18 @@
 - company: CoverHound
+  title: VP of Engineering
+  from: January 2018
+  to: Present
+  bullets: []
+
+- company: CoverHound
   title: Senior Director of Engineering
   from: March 2017
-  to: Present
+  to: January 2018
   bullets:
-  - Coaching and mentoring direct reports, helping them improve as engineers and focusing on how best to achieve their goals
-  - Scaling up the engineering team to meet product workforce demand while retaining culture of autonomy and freedom
-  - Collaborating with the team to improve coding practices in order to reduce maintenance burden and manage risk for deployment
-  - Working cross-functionally with marketing and product to make analytics accessible
+  - Coached and mentored direct reports, helping them improve as engineers and focused on how best to achieve their goals
+  - Scaled up the engineering team to meet product workforce demand while retaining culture of autonomy and freedom
+  - Collaborated with the team to improve coding practices in order to reduce maintenance burden and manage risk for deployment
+  - Worked cross-functionally with marketing and product to make analytics accessible
 
 - company: CoverHound
   title: Lead Software Engineer
