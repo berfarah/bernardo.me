@@ -3,6 +3,10 @@
   color: $grey-darker;
 }
 
+body {
+  margin: 0;
+}
+
 // Logo
 .logo {
   text-align: center;
@@ -21,15 +25,10 @@
   &.bernardo-main { font-size: modular-scale(2) }
 }
 
-.nav-container {
-  padding: 0 2rem;
-  @include outer-container(55em);
-}
-
-.nav {
-  border: solid $grey-lighter;
-  border-width: 1px 0;
-  padding: 1.5rem 0;
+footer {
+  padding: 1.5rem 2rem;
+  max-width: 55em;
+  margin: 0 auto;
 
   display: flex;
   flex-wrap: wrap;
@@ -56,6 +55,9 @@
   a {
     width: 140px;
     padding: 1.25rem 1rem;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     align-items: flex-start;
     .icon { margin-right: .5em; }
   }
@@ -80,6 +82,12 @@
     margin: 0 auto 2rem;
   }
 
+  button {
+    background: transparent;
+    color: $orange;
+    border: 1px solid $orange;
+  }
+
   @include media($medium-screen-up) {
 
     padding: 3rem 2rem;
@@ -88,7 +96,11 @@
     align-items: center;
     justify-content: center;
 
-    h2 { font-size: 2rem; }
+    // h2 {
+    //   font-size: 2rem;
+    //   text-align: center;
+    // }
+    // img { width: 30% }
 
     img { width: 30%; margin: 0 3em 0 0; }
   }
@@ -98,29 +110,49 @@
   }
 }
 
-.latest {
-  padding: 2rem 1rem;
-  @include outer-container(55em);
-  text-align: center;
+.body {
+  background: #d3d7d8;
 
-  @include media($medium-screen-up) {
-    padding: 3rem 2rem;
+  div {
+    margin: 0 auto;
+    max-width: 55em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
   }
 
-  h4 {
-    margin-bottom: 1rem;
-  }
+  ul {
+    padding: 2rem 1rem;
+    text-align: center;
 
-  li {
-    margin-bottom: 0.5rem;
-  }
+    @include media($medium-screen-up) {
+      padding: 3rem 2rem;
+    }
 
-  i {
-    margin-left: 0.5rem;
-    font-size: 0.8em;
+    h4 {
+      margin-bottom: 1rem;
+    }
+
+    @include media($medium-screen-up) {
+      a small { margin-left: 0.5rem; }
+    }
+
+    a small {
+      color: $base-font-color;
+      font-weight: normal;
+      display: block;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    i {
+      margin-left: 0.5rem;
+      font-size: 0.8em;
+    }
   }
 }
-
 
 section {
   @include outer-container(45em);

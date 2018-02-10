@@ -13,9 +13,6 @@
 @media print {
   body { background: white }
   .employments { page-break-before: always; }
-  .job,
-  p,
-  table {
-    page-break-inside: avoid;
-  }
+  .job, p, table { page-break-inside: avoid; }
+  footer { display: none }
 }

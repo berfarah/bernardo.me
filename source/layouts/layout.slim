@@ -31,3 +31,20 @@ html
           span.accent .
 
     = yield
+
+    footer
+      ul
+        / li = link_to "/blog"
+        /   i.icon.icon-pencil
+        /   | Blog
+        li = link_to "mailto:hi@bernardo.me"
+          i.icon.icon-envelope
+          | Email
+        li = link_to "/resume/index.html", relative: true
+          i.icon.icon-file-text
+          | R&eacute;sum&eacute;
+      ul
+        - data.socialmedia.each do |icon, media|
+          li = link_to media.url, target: "_blank", class: icon
+            i class="icon icon-#{icon}"
+            = media.name

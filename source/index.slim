@@ -10,29 +10,26 @@
     '  and a
     strong tech enthusiast
 
-.nav-container: nav.nav
-  ul.nav-left
-    li = link_to "mailto:hi@bernardo.me", class: :about
-      i.icon.icon-envelope
-      | Email
-    li = link_to "/resume/index.html", class: :resume, relative: true
-      i.icon.icon-file-text
-      | R&eacute;sum&eacute;
-  ul.nav-right
-    - data.socialmedia.each do |icon, media|
-      li = link_to media.url, target: "_blank", class: icon
-        i class="icon icon-#{icon}"
-        = media.name
-
-.latest
-  h4 Blog Posts
+.body: div
   ul
-    - blog.articles[0..5].each do |article|
+    h4 Posts
+    - blog.articles[0..3].each do |article|
       - if url = article.metadata[:page]["href"]
         li = link_to url, target: :_blank
           h5
             = article.title
             i.icon.icon-external-link
+            small
+              = article.date.strftime("%B %Y")
       - else
         li = link_to article.path, relative: true
-          h5 = article.title
+          h5
+            = article.title
+            small = article.date.strftime("%B %Y")
+  ul
+    h4 Projects
+    - data.projects.first(3).each do |project|
+      li = link_to project.url, target: :_blank
+        h5
+          = project.name
+          small = project.description

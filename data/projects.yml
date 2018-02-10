@@ -1,0 +1,9 @@
+- name: interactor-schema
+  description: Enforced schema for Interactor::Context
+  url: https://github.com/berfarah/interactor-schema
+- name: active-redux
+  description: JSON-API redux store with models
+  url: https://github.com/coverhound/active-redux
+- name: botopolis
+  description: An extensible chat bot written in Go
+  url: https://github.com/botopolis/bot
