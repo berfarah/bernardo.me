@@ -1,4 +1,8 @@
-# How we built React Form Validation
+---
+title: How we built React Form Validation
+date: 2018-02-24 17:23 UTC
+tags:
+---
 
 When building websites heavy on user interaction, validation of their input is a
 considerable task. At CoverHound, it's a task we faced multiple times, often
