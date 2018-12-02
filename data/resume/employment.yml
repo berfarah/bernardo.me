@@ -1,11 +1,22 @@
-- company: CoverHound
-  title: VP of Engineering
-  from: January 2018
+- company: Samsara
+  title: Product Infrastructure Engineer
+  from: June 2018
   to: Present
-  bullets: []
+  bullets:
+  - "Charter of the team: make engineers fast and developing safely easy."
+  - Implemented a requirement gathering process, along with other team processes to ensure we focused on the right things.
 
 - company: CoverHound
-  title: Senior Director of Engineering
+  title: Director of Engineering
+  from: January 2018
+  to: June 2018
+  bullets:
+  - Managed two teams (with tech leads respectively) and seven engineers directly.
+  - Hired for, mentored and supported those teams. Worked with product to manage scope for them.
+  - Included responsibilities from Engineering Manager role.
+
+- company: CoverHound
+  title: Engineering Manager
   from: March 2017
   to: January 2018
   bullets:
