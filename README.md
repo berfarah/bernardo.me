@@ -1,19 +1,4 @@
-# Bernardo.me
+# Readme
 
-## Development
-
-Install dependencies
-
-    bundle install
-
-Run the server
-
-    bundle exec middleman server
-
-## Build assets
-
-    rake build
-
-## Deployment
-
-    rake deploy
+Pushes happen on deploy. For local development use `hugo server -D`. For local
+builds, just `hugo`.
