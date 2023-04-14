@@ -1,5 +1,5 @@
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scape=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Force latest IE rendering engine or Chrome frame -->
 <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 <title>
@@ -17,8 +17,8 @@
 {{ if hugo.IsProduction }}{{ $css = $css | minify | fingerprint "md5" }}{{ end }}
 <link rel="stylesheet" href="{{ $css.Permalink }}" as="style" />
 
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.googleid }}"></script>
-<script>
+<script defer async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.googleid }}"></script>
+<script defer>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
