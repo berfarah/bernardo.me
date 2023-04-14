@@ -13,7 +13,7 @@
 <div class="body"><div>
   <ul id="posts">
     <h4>Posts</h4>
-    {{ range first 3 (where .Site.RegularPages "Type" "post") }}
+    {{ range first 3 (where .Site.RegularPages "Type" "posts") }}
     {{ if .Params.href }}
       <li><a href="{{ .Params.href }}" target="_blank">
         <h5>{{ .Title }}<i class="icon icon-external-link"></i><small>{{ .Date.Format "January 2006" }}</small></h5>
@@ -28,7 +28,7 @@
 
   <ul id="projects">
     <h4>Projects</h4>
-    {{ range first 3 (where .Site.RegularPages "Type" "project") }}
+    {{ range first 3 (where .Site.RegularPages "Type" "projects") }}
       <li><a href="{{ .Params.href }}" target="_blank">
         <h5>{{ .Title }}<small>{{ .Description }}</small></h5>
       </a></li>
