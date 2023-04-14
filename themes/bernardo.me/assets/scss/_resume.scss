@@ -17,29 +17,17 @@
 
   .skills {
     @include media($medium-screen-up) {
-      // @include display(flex);
-      // @include flex-flow(row wrap);
-      // @include justify-content(left);
 
       & > div {
         margin-bottom: 1.5em;
       }
-
-      // & > * {
-      //   width: 48%;
-      //   margin-right: 4%;
-      // }
-
-      // & > *:last-child {
-      //   margin-right: 0;
-      // }
     }
   }
 
   .info {
-    @include display(flex);
-    @include flex-flow(row wrap);
-    @include justify-content(center);
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
 
     & > *:before {
       content: '-';
