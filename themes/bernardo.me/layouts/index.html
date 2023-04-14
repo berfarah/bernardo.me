@@ -3,11 +3,7 @@
   {{ with resources.Get "images/bernardo.png" }}
   <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" class="left" alt="Bernardo Farah" />
   {{ end }}
-  <h2>
-    Hi, I am <strong>Bernardo Farah</strong> - a mix of Swiss and Brazilian, an
-    <strong>engineering leader</strong>
-    and a <strong>dad</strong>.
-  </h2>
+  {{ .Content }}
 </div>
 
 <div class="body"><div>
