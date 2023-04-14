@@ -21,3 +21,7 @@ params:
 markup:
   highlight:
     noClasses: false
+
+sitemap:
+  changefreq: monthly
+  priority: 0.5
