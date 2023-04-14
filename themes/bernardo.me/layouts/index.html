@@ -12,7 +12,7 @@
     {{ range first 3 (where .Site.RegularPages "Type" "posts") }}
     {{ if .Params.href }}
       <li><a href="{{ .Params.href }}" target="_blank">
-        <h5>{{ .Title }}<i class="icon icon-external-link"></i><small>{{ .Date.Format "January 2006" }}</small></h5>
+        <h5>{{ .Title }} {{ partial "icon.html" "external-link" }}<small>{{ .Date.Format "January 2006" }}</small></h5>
       </a></li>
     {{ else }}
       <li><a href="{{ .RelPermalink }}">
