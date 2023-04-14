@@ -9,7 +9,6 @@ params:
   location: "Seattle WA, USA"
   homepage: "www.bernardo.me"
   tagline: Engineering Leader & Dad
-  description: Hi, I am Bernardo Farah - a mix of Swiss and Brazilian, an engineering leader, and a dad
   socials:
     - icon: linkedin
       name: LinkedIn
