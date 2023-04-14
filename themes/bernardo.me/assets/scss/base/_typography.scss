@@ -63,14 +63,14 @@ a {
   text-decoration: none;
   transition: color $base-duration $base-timing;
 
+  &:visited {
+    color: $orange-dark;
+  }
+
   &:active,
   &:focus,
   &:hover {
     color: $orange;
-  }
-
-  &:visited {
-    color: $orange-dark;
   }
 }
 
