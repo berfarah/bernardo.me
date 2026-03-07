@@ -9,20 +9,12 @@
       <a href="//{{ $info.homepage }}">{{ $info.homepage }}</a>
     </p>
   </div>
-  <!-- SKILLS -->
-  <h4 id="skills">Skills</h4>
-  <div class="skills">
-    {{ range .Site.Data.resume.skills }}
-    <div>
-      <h5>{{ .title }}</h5>
-      <ul>
-      {{ range .items }}
-        <li>{{ . }}</li>
-      {{ end }}
-      </ul>
-    </div>
-    {{ end }}
+  <!-- SUMMARY -->
+  {{ with .Site.Data.resume.summary }}
+  <div class="summary">
+    <p>{{ . }}</p>
   </div>
+  {{ end }}
   <!-- EXPERIENCE -->
   <div class="experience">
     <h4 id="experience">Experience</h4>
@@ -43,19 +35,11 @@
     {{ range .Site.Data.resume.education }}
     <div class="qualification">
       <div class="meta">
-        <h5><span class="edu name">{{ .name }}</span> {{ .qualification }}</h5>
+        <h5><span class="accent">{{ .name }}</span> {{ .qualification }}</h5>
       </div>
-      <p>{{ .location }}</p>
     </div>
     {{ end }}
   </div>
-  <!-- TECHNOLOGIES -->
-  <h4 id="technologies">Technologies</h4>
-  <div class="skills">
-    {{ range .Site.Data.resume.technologies }}
-      <p><strong>{{ .title }}:</strong> {{ delimit .items ", " " and " }}</p>
-    {{ end }}
-    </div>
   <!-- INTERESTS -->
   <div class="interests">
     <h4>Interests</h4>

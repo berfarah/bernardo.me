@@ -10,6 +10,6 @@ to: "March 2017"
 
 ---
 
-- 0-1 initiative: Designed and led development for a greenfield insurance portal, delivered in 3 months.
-- Led complex scope: Designed and led development of various integrations with insurance providers.
-- Scaled eng org: Conducted interviews and helped codify interview best practices.
+- **0-1 initiative:** Designed and led development for a greenfield insurance portal, delivered in 3 months.
+- **Led complex scope:** Designed and led development of various integrations with insurance providers.
+- **Scaled eng org:** Conducted interviews and helped codify interview best practices.
