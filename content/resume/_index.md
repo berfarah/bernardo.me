@@ -3,10 +3,10 @@
 title: Résumé
 menu: footer
 
-_build:
+build:
   render: true
 cascade:
-  _build:
+  build:
     list: true
     render: false
 

@@ -1,9 +1,9 @@
 ---
 
-_build:
+build:
   render: false
 cascade:
-  _build:
+  build:
     list: true
     render: false
 
