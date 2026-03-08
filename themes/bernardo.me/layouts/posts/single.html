@@ -1,12 +1,15 @@
 {{ define "head" }}
 {{ $css := resources.Get "scss/posts.scss" | css.Sass }}
 {{ if hugo.IsProduction }}{{ $css = $css | minify | fingerprint "md5" }}{{ end }}
-<link rel="stylesheet" href="{{ $css.Permalink }}" as="style" />
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" as="style" />
 {{ end }}
 
 {{ define "main" }}
 <section class="blog"><article>
   <div class="page-title"><span><h1>{{ .Title }}</h1></span></div>
+  <div class="post-meta">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+  </div>
   {{ .Content }}
 </article></section>
 {{ end }}

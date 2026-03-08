@@ -9,7 +9,7 @@
 
 {{ $css := resources.Get "scss/main.scss" | css.Sass }}
 {{ if hugo.IsProduction }}{{ $css = $css | minify | fingerprint "md5" }}{{ end }}
-<link rel="stylesheet" href="{{ $css.Permalink }}" as="style" />
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" as="style" />
 
 <script defer async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.googleid }}"></script>
 <script defer>
