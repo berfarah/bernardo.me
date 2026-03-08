@@ -1,6 +1,6 @@
 body {
-  background: $white;
-  color: $base-font-color;
+  background: var(--color-bg);
+  color: var(--color-text);
   font-family: $base-font-family;
   font-feature-settings: "kern", "liga", "pnum";
   font-size: $base-font-size;
@@ -19,7 +19,7 @@ h6 {
   margin: 0 0 $small-spacing;
 
   .accent {
-    color: $accent-color;
+    color: var(--color-accent);
   }
 }
 
@@ -51,7 +51,7 @@ h4 {
 }
 
 h6 {
-  color: $grey;
+  color: var(--color-text-muted);
 }
 
 p {
@@ -59,23 +59,23 @@ p {
 }
 
 a {
-  color: $action-color;
+  color: var(--color-action);
   text-decoration: none;
   transition: color $base-duration $base-timing;
 
   &:visited {
-    color: $action-color;
+    color: var(--color-action);
   }
 
   &:active,
   &:focus,
   &:hover {
-    color: $orange;
+    color: var(--color-action-hover);
   }
 }
 
 hr {
-  border-bottom: $base-border;
+  border-bottom: 1px solid var(--color-border);
   border-left: 0;
   border-right: 0;
   border-top: 0;

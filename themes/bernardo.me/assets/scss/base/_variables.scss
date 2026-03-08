@@ -24,7 +24,7 @@ $base-spacing: $base-line-height * 1em;
 $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
 
-// Colors
+// Colors — light mode values (used as SCSS defaults & in :root)
 $orange       : #f29e0b;
 $orange-light : #febb49;
 $orange-dark  : #d98d0b;
@@ -61,6 +61,49 @@ $secondary-background-color: tint($base-border-color, 75%);
 // Forms
 $form-box-shadow: inset 0 1px 3px rgba(#000, 0.06);
 $form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $lightness: -5%, $alpha: -0.3);
+
+// CSS custom properties for dark mode support
+:root {
+  --color-bg: #{$white};
+  --color-bg-alt: #fff;
+  --color-text: #{$grey-darker};
+  --color-text-secondary: #{$grey-dark};
+  --color-text-muted: #{$grey};
+  --color-text-faint: #{$grey-light};
+  --color-border: #{$grey-lighter};
+  --color-action: #{$blue};
+  --color-action-hover: #{$orange};
+  --color-accent: #{$orange};
+  --color-selection-bg: #{$orange};
+  --color-selection-text: #{$grey-darker};
+  --color-code-bg: #{$grey-lighter};
+  --color-code-block-bg: #fefefe;
+  --color-code-gutter: #fafafa;
+  --color-code-gutter-border: #ddd;
+  --color-code-gutter-text: #999;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #1a1a1a;
+    --color-bg-alt: #222;
+    --color-text: #e0ddd8;
+    --color-text-secondary: #c5c2bc;
+    --color-text-muted: #9a9790;
+    --color-text-faint: #5a5752;
+    --color-border: #333;
+    --color-action: #{$blue-light};
+    --color-action-hover: #{$orange-light};
+    --color-accent: #{$orange};
+    --color-selection-bg: #{$orange-dark};
+    --color-selection-text: #fff;
+    --color-code-bg: #2a2a2a;
+    --color-code-block-bg: #252525;
+    --color-code-gutter: #2a2a2a;
+    --color-code-gutter-border: #444;
+    --color-code-gutter-text: #777;
+  }
+}
 
 // Animations
 $base-duration: 150ms;
