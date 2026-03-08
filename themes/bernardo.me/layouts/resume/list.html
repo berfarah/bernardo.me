@@ -1,49 +1,60 @@
 {{ define "main" }}
-<section id="resume" class="resume" role="main">
-  <!-- INFO -->
-  <div class="info">
-    {{ $info := .Site.Params }}
+<!-- Summary — 55em intro area bridging header to content -->
+<div class="resume-intro">
+  <div class="resume-contact">
     <p>
-      {{ $info.author }}, {{ $info.location }} -
-      <a href="mailto:{{ $info.email }}">{{ $info.email }}</a> -
-      <a href="//{{ $info.homepage }}">{{ $info.homepage }}</a>
+      {{ .Site.Params.author }}, {{ .Site.Params.location }} ·
+      <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a> ·
+      <a href="//{{ .Site.Params.homepage }}">{{ .Site.Params.homepage }}</a>
     </p>
   </div>
-  <!-- SUMMARY -->
+
   {{ with .Site.Data.resume.summary }}
-  <div class="summary">
+  <div class="resume-summary">
     <p>{{ . }}</p>
   </div>
   {{ end }}
-  <!-- EXPERIENCE -->
-  <div class="experience">
-    <h4 id="experience">Experience</h4>
-    {{ $xp := (where .Site.RegularPages.ByDate.Reverse "Type" "resume") }}
-    {{ range $xp }}
+</div>
+
+<!-- Detail content at 45em -->
+<div class="resume">
+  <!-- Experience — grouped by company, ordered by most recent role -->
+  <h4>Experience</h4>
+  {{ $.Scratch.Set "prevCompany" "" }}
+  {{ range (where .Site.RegularPages.ByDate.Reverse "Type" "resume") }}
+    {{ $prev := $.Scratch.Get "prevCompany" }}
+    {{ $isNewCompany := ne .Params.company $prev }}
+    {{ if $isNewCompany }}
+      {{ if ne $prev "" }}</div>{{ end }}
+    <div class="company-group">
+    {{ end }}
+      <div class="job">
+        <div class="job-heading">
+          {{ if $isNewCompany }}<span class="job-company">{{ .Params.company }}</span>{{ end }}
+          <h5 class="job-title">{{ .Params.title }}</h5>
+          <span class="job-date">{{ .Params.from }} &mdash; {{ .Params.to }}</span>
+        </div>
+        {{ with .Content }}<div class="job-content">{{ . }}</div>{{ end }}
+      </div>
+    {{ $.Scratch.Set "prevCompany" .Params.company }}
+  {{ end }}
+  {{ if ne ($.Scratch.Get "prevCompany") "" }}</div>{{ end }}
+
+  <!-- Education -->
+  <h4>Education</h4>
+  {{ range .Site.Data.resume.education }}
+  <div class="company-group">
     <div class="job">
-      <div class="meta">
-        <h5><span class="accent">{{ .Params.company }}</span> {{ .Params.title }}</h5>
-        <small>{{ .Params.from }} &mdash; {{ .Params.to }}</small>
-      </div>
-      {{ .Content | safeHTML }}
-    </div>
-    {{ end }}
-  </div>
-  <!-- EDUCATION -->
-  <div class="education">
-    <h4 id="education">Education</h4>
-    {{ range .Site.Data.resume.education }}
-    <div class="qualification">
-      <div class="meta">
-        <h5><span class="accent">{{ .name }}</span> {{ .qualification }}</h5>
+      <div class="job-heading">
+        <span class="job-company">{{ .name }}</span>
+        <h5 class="job-title">{{ .qualification }}</h5>
       </div>
     </div>
-    {{ end }}
   </div>
-  <!-- INTERESTS -->
-  <div class="interests">
-    <h4>Interests</h4>
-    <p>{{ .Site.Data.resume.interests }}</p>
-  </div>
-</section>
+  {{ end }}
+
+  <!-- Interests -->
+  <h4>Interests</h4>
+  <p>{{ .Site.Data.resume.interests }}</p>
+</div>
 {{ end }}

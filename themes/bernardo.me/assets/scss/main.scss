@@ -9,8 +9,27 @@
 @import "resume";
 
 @media print {
-  body { background: white }
-  .employments { page-break-before: always; }
-  .job, p, table { page-break-inside: avoid; }
-  footer { display: none }
+  body { background: white; font-family: serif; }
+  .site-header .site-nav { display: none; }
+  .site-header .accent { animation: none; opacity: 1; transform: none; }
+  .resume-intro {
+    max-width: 45em;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .resume-contact { display: block; }
+  .job {
+    break-inside: avoid;
+    overflow: visible;
+  }
+  .job-content li { break-inside: avoid; }
+  h4 { break-after: avoid; }
+  .company-group {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+  }
+  .resume { padding: 1rem 0; }
+  .resume-intro { padding: 1rem 0 0.5rem; }
+  footer { display: none; }
 }
