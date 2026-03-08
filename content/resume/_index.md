@@ -1,7 +1,6 @@
 ---
 
 title: Résumé
-menu: footer
 
 build:
   render: true

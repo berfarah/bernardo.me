@@ -1,0 +1,24 @@
+{{ define "head" }}
+{{ $css := resources.Get "scss/posts.scss" | css.Sass }}
+{{ if hugo.IsProduction }}{{ $css = $css | minify | fingerprint "md5" }}{{ end }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" as="style" />
+{{ end }}
+
+{{ define "main" }}
+<section class="writing-list">
+  <div class="page-title"><span><h1>{{ .Title }}</h1></span></div>
+  {{ range .Pages.ByDate.Reverse }}
+  <div class="writing-item">
+    {{ if .Params.href }}
+    <a href="{{ .Params.href }}" target="_blank">
+    {{ else }}
+    <a href="{{ .RelPermalink }}">
+    {{ end }}
+      <div class="writing-title">{{ .Title }}{{ if .Params.href }} <span class="external-indicator">&nearr;</span>{{ end }}</div>
+      <span class="writing-date">{{ .Date.Format "January 2006" }}</span>
+    </a>
+    {{ with .Description }}<p class="writing-desc">{{ . }}</p>{{ end }}
+  </div>
+  {{ end }}
+</section>
+{{ end }}

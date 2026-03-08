@@ -7,6 +7,7 @@ company: Samsara
 location: "Seattle, WA"
 from: "February 2019"
 to: "February 2023"
+description: "Scaled platform teams through hypergrowth, opened international offices, and drove performance initiatives."
 
 ---
 

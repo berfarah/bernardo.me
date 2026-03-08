@@ -1,0 +1,42 @@
+{{ define "main" }}
+<div class="intro">
+  {{ with resources.Get "images/bernardo.png" }}
+  <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" class="intro-photo" alt="Bernardo Farah" />
+  {{ end }}
+  <div class="intro-text">
+    {{ .Content }}
+  </div>
+</div>
+
+<div class="recent-writing">
+  <h3>Writing</h3>
+  {{ range first 3 (where .Site.RegularPages "Type" "posts") }}
+  <div class="writing-item">
+    {{ if .Params.href }}
+    <a href="{{ .Params.href }}" target="_blank">
+      <div class="writing-title">{{ .Title }} <span class="external-indicator">&nearr;</span></div>
+      <span class="writing-date">{{ .Date.Format "January 2006" }}</span>
+    </a>
+    {{ else }}
+    <a href="{{ .RelPermalink }}">
+      <div class="writing-title">{{ .Title }}</div>
+      <span class="writing-date">{{ .PublishDate.Format "January 2006" }}</span>
+    </a>
+    {{ end }}
+    {{ with .Description }}<p class="writing-desc">{{ . }}</p>{{ end }}
+  </div>
+  {{ end }}
+</div>
+
+<div class="projects">
+  <h3>Open Source</h3>
+  <div class="projects-grid">
+    {{ range first 3 (where .Site.RegularPages "Type" "projects") }}
+    <div class="project-item">
+      <h5><a href="{{ .Params.href }}" target="_blank">{{ .Title }}</a></h5>
+      <p>{{ .Description }}</p>
+    </div>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

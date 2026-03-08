@@ -2,8 +2,10 @@
 
 title: "Bernardo Farah: Engineering Leader & Dad"
 draft: false
-description: Hi, I am Bernardo Farah - a mix of Swiss and Brazilian, an engineering leader, and a dad
+description: Bernardo Farah — engineering leader based in Seattle. Half Swiss, half Brazilian, full dad. Mediocre photographer, worse woodworker.
 
 ---
 
-## Hi, I am **Bernardo Farah** - a mix of Swiss and Brazilian, an **engineering leader** and a **dad**.
+I'm **Bernardo Farah** — an engineering leader based in Seattle, currently Director of Engineering at **Xero**. Before that, I spent over seven years at **Samsara**, scaling teams through hypergrowth and building products from zero to one.
+
+Half Swiss, half Brazilian, full dad. Mediocre photographer, worse woodworker.

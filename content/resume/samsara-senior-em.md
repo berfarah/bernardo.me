@@ -7,6 +7,7 @@ company: Samsara
 location: "Seattle, WA"
 from: "February 2023"
 to: "December 2025"
+description: "Led up to 20 engineers and 3 EMs across product, platform, and fintech teams."
 
 ---
 

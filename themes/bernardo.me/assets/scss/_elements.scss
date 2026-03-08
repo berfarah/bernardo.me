@@ -7,12 +7,73 @@ body {
   margin: 0;
 }
 
-// Logo
-.logo {
-  text-align: center;
-  padding-top: 1rem;
-  a{ color: inherit; }
-  @include media($medium-screen-up) { padding-top: 3rem; }
+// Shared section label style — the orange left-border motif
+%section-label {
+  font-family: $sans-serif;
+  font-weight: 900;
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $grey-dark;
+  border-left: 3px solid $orange;
+  padding-left: 0.75em;
+  margin-bottom: 1.5rem;
+}
+
+// Header / Navigation
+.site-header {
+  max-width: 55em;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  @include media($medium-screen-up) {
+    padding: 2rem 2rem 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  a { color: inherit; }
+
+  .accent {
+    display: inline-block;
+
+    .first-visit & {
+      animation: dot-in 0.6s ease-out both;
+      animation-delay: 0.3s;
+    }
+  }
+}
+
+@keyframes dot-in {
+  from { opacity: 0; transform: scale(0); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.site-nav {
+  display: flex;
+  gap: 2em;
+  margin-top: 0.5rem;
+
+  @include media($medium-screen-up) {
+    margin-top: 0;
+  }
+
+  a {
+    font-family: $sans-serif;
+    font-weight: 900;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $grey-dark;
+    transition: color $base-duration $base-timing;
+
+    &:visited { color: $grey-dark; }
+    &:hover, &:focus { color: $orange; }
+  }
 }
 
 .bernardo {
@@ -25,145 +86,185 @@ body {
   &.bernardo-main { font-size: modular-scale(2) }
 }
 
-footer {
-  padding: 1.5rem 2rem;
+// Homepage sections
+.intro {
   max-width: 55em;
   margin: 0 auto;
-
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-    @include media($medium-screen-up) { justify-content: space-between; }
-
-  list-style: none;
-
-  &:after {
-    display: none;
-  }
-
-  ul {
-    display: flex;
-    flex-direction: column;
-    @include media($medium-screen-up) { flex-direction: row; }
-
-    li {
-      margin-bottom: 1rem;
-      @include media($medium-screen-up) { margin: 0; }
-    }
-  }
-
-  a {
-    width: 140px;
-    padding: 1.25rem 1rem;
-    font-size: 0.7em;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    align-items: flex-start;
-    .icon { margin-right: .5em; }
-  }
-}
-
-.welcome {
-  padding: 2rem 1rem;
-  @include outer-container(55em);
-
-  strong:last-child { display: inline-block; }
-
-  h2 {
-    font-weight: 200;
-    font-size: 1.7rem;
-    margin: 0;
-    strong { font-weight: 500 }
-  }
-
-  img {
-    width: 50%;
-    height: auto;
-    display: block;
-    margin: 0 auto 2rem;
-  }
-
-  button {
-    background: transparent;
-    color: $orange;
-    border: 1px solid $orange;
-  }
+  padding: 2rem 2rem 3rem;
 
   @include media($medium-screen-up) {
-
-    padding: 3rem 2rem;
-
+    padding: 3rem 2rem 4rem;
     display: flex;
     align-items: center;
-    justify-content: center;
-
-    img {
-      width: 30%;
-      height: auto;
-      margin: 0 3em 0 0;
-    }
+    gap: 3em;
   }
 
-  @include media($large-screen-up) {
-    h2 { font-size: 2.6rem; }
-  }
-}
-
-.body {
-  background: #d3d7d8;
-
-  div {
-    margin: 0 auto;
-    max-width: 55em;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-
-  ul {
-    padding: 2rem 1rem;
-    text-align: center;
+  .intro-photo {
+    width: 45%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 2rem;
 
     @include media($medium-screen-up) {
-      padding: 3rem 2rem;
+      width: 25%;
+      max-width: 220px;
+      margin: 0;
+      flex-shrink: 0;
     }
+  }
 
-    h4 {
+  .intro-text {
+    p {
+      font-size: 1.15rem;
+      line-height: 1.7;
       margin-bottom: 1rem;
     }
+  }
 
-    @include media($medium-screen-up) {
-      a small { margin-left: 0.5rem; }
-    }
+  border-bottom: 1px solid $grey-lighter;
+}
 
-    a small {
-      color: $base-font-color;
-      font-weight: normal;
-      display: block;
-    }
+.recent-writing {
+  max-width: 55em;
+  margin: 0 auto;
+  padding: 2rem 2rem 3rem;
 
-    li {
-      margin-bottom: 0.5rem;
-    }
+  h3 { @extend %section-label; }
+}
 
-    i {
-      margin-left: 0.5rem;
-      font-size: 0.8em;
+// Shared writing-item styles — used by homepage and writing list page
+.writing-item {
+  margin-bottom: 1.5rem;
+
+  a {
+    display: block;
+
+    &:hover .writing-title, &:focus .writing-title {
+      color: $orange;
     }
   }
 }
 
+.writing-title {
+  font-family: $sans-serif;
+  font-weight: 500;
+  font-size: 1.35rem;
+  margin: 0;
+  color: inherit;
+
+  .external-indicator {
+    font-size: 0.75em;
+    color: $grey;
+  }
+}
+
+.writing-date {
+  font-family: $sans-serif;
+  font-size: 0.8em;
+  color: $grey;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.writing-desc {
+  font-size: 0.95rem;
+  color: $grey;
+  margin-top: 0.3em;
+  line-height: 1.6;
+}
+
+.projects {
+  max-width: 55em;
+  margin: 0 auto;
+  padding: 1rem 2rem 3rem;
+
+  h3 { @extend %section-label; }
+
+  .projects-grid {
+    display: grid;
+    gap: 1.5rem;
+
+    @include media($medium-screen-up) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .project-item {
+    h5 {
+      font-weight: 500;
+      font-size: 1.1rem;
+      margin: 0 0 0.25em;
+
+      a {
+        font-family: $sans-serif;
+      }
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: $grey;
+      margin: 0;
+      line-height: 1.5;
+    }
+  }
+}
+
+// Footer
+footer {
+  max-width: 55em;
+  margin: 0 auto;
+  padding: 2rem 2rem 3rem;
+  border-top: 3px solid $orange;
+  font-family: $sans-serif;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $grey;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+
+  @include media($medium-screen-up) {
+    justify-content: space-between;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5em 2em;
+
+    a {
+      color: $grey-dark;
+      transition: color $base-duration $base-timing;
+
+      &:visited { color: $grey-dark; }
+      &:hover, &:focus { color: $orange; }
+    }
+  }
+
+  .copyright {
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9em;
+    color: $grey-light;
+
+    @include media($medium-screen-up) {
+      width: auto;
+      margin-top: 0;
+      text-align: right;
+    }
+  }
+}
+
+// Content sections
 section {
   @include outer-container(45em);
   padding: 3rem 2rem;
-
-  // article {
-  //   @include span-columns(8);
-  // }
-  //
-  // aside {
-  //   @include span-columns(4);
-  // }
 
   ul,
   ol {
@@ -183,8 +284,6 @@ section {
     padding-left: 0.25rem;
     margin-bottom: 0.25rem;
   }
-
-
 }
 
 article {
