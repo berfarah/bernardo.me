@@ -3,16 +3,10 @@
 // Copyright 2013-2015 thoughtbot, inc.
 // MIT License
 
+@import "vendor";
 @import "variables";
 
-// Neat Settings -- uncomment if using Neat -- must be imported before Neat
-@import "grid-settings";
-@import "../../../submodules/neat/app/assets/stylesheets/neat";
-
-@import "buttons";
-@import "forms";
 @import "lists";
-@import "tables";
 @import "typography";
 @import "fonts";
 @import "icons";

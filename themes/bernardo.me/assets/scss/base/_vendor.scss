@@ -1,0 +1,80 @@
+// Vendored utilities from Bourbon v4.3.4 and Neat v1.9.0
+// Only the functions/mixins actually used in this project.
+// TODO: Replace with modern CSS equivalents (custom properties, clamp(), etc.)
+
+// ---- Bourbon: px-to-em ----
+$em-base: 16px !default;
+
+@function em($pxval, $base: $em-base) {
+  @if not unitless($pxval) {
+    $pxval: $pxval / ($pxval * 0 + 1);
+  }
+  @if not unitless($base) {
+    $base: $base / ($base * 0 + 1);
+  }
+  @return ($pxval / $base) * 1em;
+}
+
+// ---- Bourbon: modular-scale ----
+$modular-scale-ratio: 1.333 !default; // perfect-fourth
+$modular-scale-base: em($em-base) !default;
+
+@function modular-scale($increment, $value: $modular-scale-base, $ratio: $modular-scale-ratio) {
+  $v1: nth($value, 1);
+  $v2: nth($value, length($value));
+  $value: $v1;
+
+  @while $v2 > $v1 { $v2: ($v2 / $ratio); }
+  @while $v2 < $v1 { $v2: ($v2 * $ratio); }
+
+  $double-stranded: $v2 > $v1;
+
+  @if $increment > 0 {
+    @for $i from 1 through $increment {
+      @if $double-stranded and ($v1 * $ratio) > $v2 {
+        $value: $v2;
+        $v2: ($v2 * $ratio);
+      } @else {
+        $v1: ($v1 * $ratio);
+        $value: $v1;
+      }
+    }
+  }
+
+  @if $increment < 0 {
+    @if $double-stranded { $v2: ($v2 / $ratio); }
+    @for $i from $increment through -1 {
+      @if $double-stranded and ($v1 / $ratio) < $v2 {
+        $value: $v2;
+        $v2: ($v2 / $ratio);
+      } @else {
+        $v1: ($v1 / $ratio);
+        $value: $v1;
+      }
+    }
+  }
+
+  @return $value;
+}
+
+// ---- Bourbon: tint & shade ----
+@function tint($color, $percent) {
+  @return mix(#fff, $color, $percent);
+}
+
+@function shade($color, $percent) {
+  @return mix(#000, $color, $percent);
+}
+
+// ---- Breakpoints (replaces Neat's new-breakpoint + media mixin) ----
+$medium-screen: 600px !default;
+$large-screen: 900px !default;
+
+$medium-screen-up: $medium-screen;
+$large-screen-up: $large-screen;
+
+@mixin media($bp) {
+  @media screen and (min-width: $bp) {
+    @content;
+  }
+}

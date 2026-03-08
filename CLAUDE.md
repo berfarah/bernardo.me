@@ -37,7 +37,7 @@ Everything UI-related is in `themes/bernardo.me/`:
 - `assets/scss/` — SCSS stylesheets; `main.scss` is the entrypoint
 - `static/` — Fonts, favicons, CNAME
 - `archetypes/` — Templates for `hugo new` commands
-- `submodules/` — Bourbon (CSS mixins) and Neat (grid system) as git submodules
+- `assets/scss/base/_vendor.scss` — Vendored Bourbon/Neat utilities (modular-scale, tint, shade, media mixin)
 
 Top-level `layouts/` overrides theme templates (e.g., `layouts/index.html` for homepage).
 
@@ -56,7 +56,7 @@ This creates a visual bridge from the wide header to narrower content.
 - **Important:** Use `.RelPermalink` (not `.Permalink`) for CSS links to avoid CORS issues with Hugo's dev asset server
 - Color system: orange primary (#f29e0b), blue secondary (#337196)
 - Typography: Newsreader (serif body), Texta (sans-serif headings), Office Code Pro (monospace)
-- Grid: Bourbon/Neat with breakpoints `$medium-screen-up`, `$large-screen-up`
+- Breakpoints: `$medium-screen-up` (600px), `$large-screen-up` (900px) via vendored `media()` mixin
 - Print styles in `main.scss` `@media print` block — resume page breaks use `break-inside: avoid` on `.job` elements
 - Logo dot animation (`.accent`) only plays on fresh visits via `document.referrer` check
 
@@ -64,6 +64,6 @@ This creates a visual bridge from the wide header to narrower content.
 
 `config.yml` — Hugo configuration including site params, social links, Google Analytics ID, and disabled taxonomies.
 
-## Submodules
+## TODO
 
-Clone with `--recursive` or run `git submodule update --init --recursive` after cloning.
+- **Modernize CSS:** Replace vendored Bourbon/Neat utilities with modern CSS. `modular-scale()` → CSS `clamp()`/custom properties, `tint()`/`shade()` → `color-mix()`, `@include media()` → plain `@media` queries. The vendored functions in `_vendor.scss` are the last legacy dependency.

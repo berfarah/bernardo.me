@@ -1,8 +1,6 @@
 @charset "utf-8";
 
-@import "../../submodules/bourbon/app/assets/stylesheets/bourbon";
-@import "base/grid-settings"; // or "../neat/neat-helpers" when not in Rails
-@import "../../submodules/neat/app/assets/stylesheets/neat";
+@import "base/vendor";
 @import "base/variables";
 @import "syntax";
 
