@@ -1,13 +1,5 @@
 @import "_syntax_highlight";
 
-.highlight .c,
-.highlight .cd,
-.highlight .cm,
-.highlight .c1,
-.highlight .cs {
-  color: #b0b0b0;
-}
-
 pre {
   overflow-x: auto;
   margin: 0;
@@ -76,7 +68,6 @@ p > pre,
 a > pre,
 li > pre {
   background: $grey-lighter;
-  background: lighten($blue-light, 50%);
   border-radius: 4px;
   padding: 2px 4px;
 }

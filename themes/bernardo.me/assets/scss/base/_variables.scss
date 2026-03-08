@@ -3,11 +3,11 @@
 
 // Text
 $sans-serif  : Texta, Helvetica, Arial, sans-serif;
+$serif       : 'Newsreader', Georgia, serif;
 $monospace: 'Office Code Pro', monospace;
-// $serif       : "Klinic Slab", Rockwell, serif;
 
 // Typography
-$base-font-family: $sans-serif;
+$base-font-family: $serif;
 $heading-font-family: $sans-serif;
 
 // Font Sizes
@@ -29,16 +29,16 @@ $orange       : #f29e0b;
 $orange-light : #febb49;
 $orange-dark  : #d98d0b;
 
-$blue         : #337196;
-$blue-light   : #2983b8;
-$blue-dark    : #214d68;
+$blue         : #4a7a94;
+$blue-light   : #5a8da6;
+$blue-dark    : #3a6478;
 
-$white        : #f5f8fa;
-$grey-lighter : #d3d7d8;
-$grey-light   : #bfc2c4;
-$grey         : #7e8183;
-$grey-dark    : #3e4243;
-$grey-darker  : #202325;
+$white        : #faf8f5;
+$grey-lighter : #eae7e1;
+$grey-light   : #c5c2bc;
+$grey         : #7a7772;
+$grey-dark    : #3d3a36;
+$grey-darker  : #1f1d1a;
 
 $dark-gray: $grey-darker;
 $medium-gray: $grey;
@@ -46,7 +46,7 @@ $light-gray: $grey-light;
 
 // Font Colors
 $base-font-color: $dark-gray;
-$action-color: $orange-dark;
+$action-color: $blue;
 $accent-color: $orange;
 
 
