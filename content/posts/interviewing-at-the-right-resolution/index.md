@@ -50,9 +50,7 @@ An interview loop that tries to assess system design, coding ability, leadership
 
 And this is where it gets dangerous, because a complete scorecard _feels_ like strong data. Every dimension has a score, every interviewer submitted feedback, the rubric is filled out. It looks like rigor. But if each of those scores is backed by five minutes of surface-level conversation, what you actually have is a collection of first impressions with a professional format. I once had four yeses on a panel where none of the scorecards had strong evidence or real conviction. Surface-level project descriptions, no depth beyond the high-level. Four yeses, zero confidence.
 
-The data backs this up. Interviewing is [a noisy prediction problem](https://erikbern.com/2018/05/02/interviewing-is-a-noisy-prediction-problem.html): each conversation is a low-fidelity measurement, and adding more low-resolution measurements doesn't reduce the noise. [Google's People Analytics team](https://www.cnbc.com/2019/04/17/heres-how-many-google-job-interviews-it-takes-to-hire-a-googler.html) found that four well-structured interviews predicted hiring outcomes with 86% confidence; each additional interview beyond that added less than 1%. More isn't better. Better-aimed is better.
-
-The alternative is uncomfortable but more honest. You have to choose which parts of the ocean floor matter most for _this role, on this team, at this moment_, and accept that other areas will stay in low resolution.
+The data backs this up. Interviewing is [a noisy prediction problem](https://erikbern.com/2018/05/02/interviewing-is-a-noisy-prediction-problem.html): each conversation is a low-fidelity measurement, and adding more low-resolution measurements doesn't reduce the noise. You have to choose which parts of the ocean floor matter most for _this role, on this team, at this moment_, and accept that other areas will stay in low resolution.
 
 ---
 
@@ -64,7 +62,7 @@ Most interview loops are assembled bottom-up. Someone pulls out their favorite s
 
 Instead, before you write a single question: **what are the three or four things that, if we had strong signal on them, would give us confidence in a decision?** Not a wish list of everything you'd love to know. The specific, prioritized signals that matter most for this role.
 
-A senior engineer joining a team that's rewriting a core service needs different signal than one joining a steady-state team. A tech lead role might demand high resolution on how someone handles ambiguity and influences without authority, and only surface-level confirmation that they can write decent code. A management role might have different priorities entirely.
+A senior engineer joining a team that's rewriting a core service needs different signal than one joining a steady-state team. A staff role might demand high resolution on how someone handles ambiguity and influences without authority, and only surface-level confirmation that they can write decent code. A management role might have different priorities entirely.
 
 When you define your signals upfront, the rest of the process follows: interviewers get assigned to specific areas, questions probe the dimensions you actually care about, and everyone walks into the debrief knowing what they were supposed to be mapping.
 
@@ -132,7 +130,7 @@ Once you've defined your signals, you have to design the process to match. The r
 
 **The pivots.** The hardest skill, and the one that separates a good interviewer from someone running a script. Mid-conversation, something shifts — you came in planning to probe technical design, but the candidate's answer opens a more interesting question about how they handle ambiguity. Do you follow that thread or stick to your plan? The interviewer who can redirect depth toward the most valuable signal as the conversation reveals it will produce better reads.
 
-I've gotten this wrong myself. I've walked out of interviews thinking "did I get any real signal?", plodding along with my planned questions, collecting low-resolution information across the board instead of committing to depth anywhere. These days, I might only get two or three pieces of signal in an interview, but I'll feel confident in each one.
+I've gotten this wrong myself. I've walked out of interviews thinking "did I get any real signal?", plodding along with my planned questions, collecting low-resolution information across the board instead of committing to depth anywhere. These days, I focus. I might only get two or three pieces of signal in an interview, but I'll feel confident in each one.
 
 ---
 
@@ -142,7 +140,7 @@ With your signals defined and your depth allocated, a few principles make the di
 
 ### Challenge Your Signal
 
-Two interviewers covering partially overlapping territory looks like inefficiency, but it's calibration: two independent reads on the same dimension. Same principle that makes multiple sonar passes valuable: each pass reduces measurement error. Different interviewers will pull different threads from the same story; one focuses on technical decisions, another on leadership dynamics, another on how the candidate handles the parts that didn't go well.
+While you want to set up interviewers with different conversations, overlapping territory on competencies isn't a bad thing. It's two reads on the same dimension. Same principle that makes multiple sonar passes valuable: each pass reduces measurement error. Different interviewers will pull different threads from the same story; one focuses on technical decisions, another on leadership dynamics, another on how the candidate handles the parts that didn't go well.
 
 This applies within a single interview too. When you form an early impression, the natural instinct is to spend the rest of the conversation confirming it. Fight that. A positive impression that survives a genuine search for counter-evidence is worth far more than one that was never tested. And a negative impression that dissolves under scrutiny saves you from passing on the right person.
 
