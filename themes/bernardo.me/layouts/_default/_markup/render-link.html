@@ -1,0 +1,5 @@
+{{- $isExternal := strings.HasPrefix .Destination "http" -}}
+<a href="{{ .Destination | safeURL }}"{{ if $isExternal }} target="_blank" rel="noopener"{{ end }}>
+  {{- .Text -}}
+  {{- if $isExternal }} <span class="external-indicator" aria-hidden="true">&nearr;</span>{{ end -}}
+</a>
