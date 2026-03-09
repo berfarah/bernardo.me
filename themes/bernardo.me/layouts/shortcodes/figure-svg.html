@@ -1,0 +1,4 @@
+<figure class="svg-figure" role="img" aria-label="{{ .Get "alt" }}">
+  {{ .Inner | safeHTML }}
+  {{ with .Get "caption" }}<figcaption>{{ . | safeHTML }}</figcaption>{{ end }}
+</figure>
