@@ -46,31 +46,29 @@ Here's the paradox at the heart of every interview process: **the more you try t
 </svg>
 {{< /figure-svg >}}
 
-An interview loop that tries to assess system design, coding ability, leadership, communication, collaboration, domain knowledge, culture fit, and strategic thinking across four 45-minute conversations isn't being thorough. It's being shallow everywhere. Each of those dimensions gets a few minutes of surface-level probing, enough to produce a score on a rubric but not enough to produce real signal. You end up with a map that looks complete. It has numbers in every box. But it's the satellite view: blurry enough that you can't actually tell a ridge from a trench.
+I once had four yeses on a panel where none of the scorecards had real conviction. Surface-level project descriptions, no depth beyond the high-level. Four yeses, zero confidence. That can happen when an interview loop is trying to cover eight dimensions across in a 45-minute conversation. Each dimension only gets a few minutes of airtime. Enough to fill a scorecard, but not enough to produce real signal. You end up with a satellite view where you can't differentiate a ridge from a trench.
 
-And this is where it gets dangerous, because a complete scorecard _feels_ like strong data. Every dimension has a score, every interviewer submitted feedback, the rubric is filled out. It looks like rigor. But if each of those scores is backed by five minutes of surface-level conversation, what you actually have is a collection of first impressions with a professional format. I once had four yeses on a panel where none of the scorecards had strong evidence or real conviction. Surface-level project descriptions, no depth beyond the high-level. Four yeses, zero confidence.
-
-The data backs this up. Interviewing is [a noisy prediction problem](https://erikbern.com/2018/05/02/interviewing-is-a-noisy-prediction-problem.html): each conversation is a low-fidelity measurement, and adding more low-resolution measurements doesn't reduce the noise. You have to choose which parts of the ocean floor matter most for _this role, on this team, at this moment_, and accept that other areas will stay in low resolution.
+Interviewing is [a noisy prediction problem](https://erikbern.com/2018/05/02/interviewing-is-a-noisy-prediction-problem.html): each assessment is a low-fidelity measurement, and adding more low-resolution measurements doesn't reduce the noise. You have to choose which parts of the ocean floor matter most for _this role, on this team, at this moment_, and accept that other areas will stay in low resolution.
 
 ---
 
 ## Start With What You're Actually Looking For
 
-So if coverage is the problem, where do you actually start?
+I've found many interview loops are assembled bottom-up. Someone pulls out their favorite system design prompt. Another interviewer brings in behavioral question they've been asking for three years. The loop gets stitched together from existing parts, and the implicit assumption is that if you cover enough topics, you'll learn enough to decide. But that's not a first principles approach. If you don't map your questions back to your criteria, how do you know you're assessing for the right things?
 
-Most interview loops are assembled bottom-up. Someone pulls out their favorite system design prompt. Another interviewer dusts off the behavioral question they've been asking for three years. The loop gets stitched together from existing parts, and the implicit assumption is that if you cover enough topics, you'll learn enough to decide. I once reviewed a loop where three interviews all independently assessed how candidates managed their projects, communicated technical impact, and mentored other engineers. Three hours of conversation, all covering the same ground at surface level, none of them going deep. A full scorecard, no real signal anywhere.
-
-Instead, before you write a single question: **what are the three or four things that, if we had strong signal on them, would give us confidence in a decision?** Not a wish list of everything you'd love to know. The specific, prioritized signals that matter most for this role.
+Instead, before writing a single question, I ask myself: **what are the three or four things that, if we had strong signal on them, would give us confidence in a decision?** Not a wish list of everything I'd love to know. The specific, prioritized signals that matter most for this role.
 
 A senior engineer joining a team that's rewriting a core service needs different signal than one joining a steady-state team. A staff role might demand high resolution on how someone handles ambiguity and influences without authority, and only surface-level confirmation that they can write decent code. A management role might have different priorities entirely.
 
-When you define your signals upfront, the rest of the process follows: interviewers get assigned to specific areas, questions probe the dimensions you actually care about, and everyone walks into the debrief knowing what they were supposed to be mapping.
+Once we have the rubric, the questions are much easier. Now we're looking for situations that can reflect the behavior and competencies we're looking for. We can catch flaws early, like assessing for "empathy" and "making tough calls" separately, missing managers who live their values when having tough performance conversations.
+
+Our interview loop has a clear separation of concerns that sets our interviewers up, and our interviewers can walk into our debrief knowing what they were supposed to be mapping.
 
 ---
 
 ## Choosing Where to Point the Beam
 
-Once you've defined your signals, you have to design the process to match. The resolution trade-off doesn't just apply at the loop level. It applies all the way down. A system design interview spans architecture, domain modeling, error handling, monitoring, scalability and more. You can't go deep on all of them. Maybe the candidate's approach to error handling raises a question, so you spend ten minutes there while their monitoring answer stays at surface level. Making these trade-offs in real time requires three distinct skills:
+Now we've defined our signals, we can start thinking about the skills involved in conducting our interview. As an interviewer, I have a library of questions that I can use to direct my conversation — but there's no way I can go deep on all of them. In a system design spanning architecture, domain modeling, error handling, monitoring, scalability and more, I still have to direct my focus. So, maybe the candidate's approach to error handling raises a question. I spend ten minutes there, while their monitoring answer stays at the surface level. Making these trade-offs in real-time requires three distinct skills:
 
 {{< figure-svg alt="Interview time allocation showing broad scan, deep dive, and pivot phases" caption="A 45-minute interview: scan broadly, then commit depth where it matters most." >}}
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 185" width="680" height="185">
@@ -124,31 +122,29 @@ Once you've defined your signals, you have to design the process to match. The r
 </svg>
 {{< /figure-svg >}}
 
-**The broad scan.** Early conversations (or the opening of each interview) establish a baseline: where does this person's experience cluster, what's their general depth, how do they talk about their work? You're not just getting oriented. You're doing **risk assessment**. You're building a low-resolution picture specifically to spot where the terrain looks odd. A candidate's summary of how they led a migration might sound perfectly reasonable — but is that because they drove the technical decisions, or because they're narrating someone else's work? The broad scan tells you where to go deeper.
+**The broad scan.** Early conversations (or the opening of each interview) establish a baseline: where does this person's experience cluster, what's their general depth, how do they talk about their work? I'm doing **risk assessment** — building a low-resolution picture to spot where the terrain looks odd. A candidate's summary of how they led a migration might sound perfectly reasonable — but is that because they drove the technical decisions, or because they're narrating someone else's work? The broad scan tells me where to go deeper.
 
-**The deep dives.** Some are predetermined. If technical leadership is your top signal, you planned for it. Others emerge from the broad scan. The candidate mentions a project that sounds like it went sideways, then pivots quickly. A claim on their resume doesn't match the depth of their answers. A description of cross-team work sounds polished. Maybe too polished. These are the oddly shaped features on your map, and spending a few extra minutes at higher resolution can change your read entirely.
+**The deep dives.** Some are predetermined. If technical leadership is my top signal, I planned for it. Others emerge from the broad scan. The candidate mentions a project that sounds like it went sideways, then pivots quickly. A claim on their resume doesn't match the depth of their answers. A description of cross-team work sounds polished. Maybe too polished. These are the oddly shaped features on my map, and spending a few extra minutes at higher resolution might change my read entirely.
 
-**The pivots.** The hardest skill, and the one that separates a good interviewer from someone running a script. Mid-conversation, something shifts — you came in planning to probe technical design, but the candidate's answer opens a more interesting question about how they handle ambiguity. Do you follow that thread or stick to your plan? The interviewer who can redirect depth toward the most valuable signal as the conversation reveals it will produce better reads.
+**The pivots.** The hardest skill, and one that requires the most judgment. Mid-conversation, something shifts — I came in planning to probe technical design, but the candidate's answer opens a more interesting question about how they handle ambiguity. Do I follow that thread or stick to my plan? If I can redirect depth to the most valuable signal, I'm making much better use of my time.
 
-I've gotten this wrong myself. I've walked out of interviews thinking "did I get any real signal?", plodding along with my planned questions, collecting low-resolution information across the board instead of committing to depth anywhere. These days, I focus. I might only get two or three pieces of signal in an interview, but I'll feel confident in each one.
+I've definitely gotten this wrong before. I've walked out of interviews thinking "did I get any real signal?", plodding along with my planned questions, collecting low-resolution information across the board instead of committing to depth anywhere. These days, I focus. I might only get two or three pieces of signal in an interview, but I'll feel confident in each one.
 
 ---
 
 ## Designing for Signal
 
-With your signals defined and your depth allocated, a few principles make the difference between a process that surfaces real signal and one that produces noise.
+With signals and depth allocated, a couple habits have made a big difference for me in increasing signal output.
 
-### Challenge Your Signal
+**Challenge Your Signal**
 
-While you want to set up interviewers with different conversations, overlapping territory on competencies isn't a bad thing. It's two reads on the same dimension. Same principle that makes multiple sonar passes valuable: each pass reduces measurement error. Different interviewers will pull different threads from the same story; one focuses on technical decisions, another on leadership dynamics, another on how the candidate handles the parts that didn't go well.
+While I set up interviewers with different conversations, I like having some overlapping territory on competencies from different perspectives. Different interviewers will pull different threads from the same story; one focuses on technical decisions, another on leadership dynamics, another on how the candidate handles the parts that didn't go well.
 
-This applies within a single interview too. When you form an early impression, the natural instinct is to spend the rest of the conversation confirming it. Fight that. A positive impression that survives a genuine search for counter-evidence is worth far more than one that was never tested. And a negative impression that dissolves under scrutiny saves you from passing on the right person.
+This applies within a single interview too. When I form an early impression, my instinct is to spend the rest of the conversation confirming it. I've learned to fight that. A positive impression that survives a genuine search for counter-evidence is worth far more than one I never tested. And a negative impression that dissolves under scrutiny has saved me from passing on the right person more than once.
 
-### Make the Conversation Flow
+**Make the Conversation Flow**
 
-This sounds like a "nice to have" but it's structural. People give you far better signal when they're not anxious, defensive, or confused about what you're asking. An interview where topics build on each other, where the interviewer is genuinely curious rather than checking boxes, gets the candidate to stop performing and start communicating. Ask open questions, then follow where the candidate takes you. The unexpected paths are where the real signal lives.
-
-Without that intentionality, interviews drift. I've seen rounds try to assess "empathy" in isolation from "makes tough calls", which will never surface a manager who leads with empathy but can't speak to how that shapes their performance management. You can hear the cost in debriefs: "They scored high on empathy but I'm not sure they can manage underperformance." "They talked about caring for their team but didn't have examples of hard conversations" — when a more curious interviewer, one who followed a story about a struggling report and asked what happened next, might have found both signals in the same conversation.
+I feel very strongly about this: making people feel at ease isn't just something I do to be polite. People give you far better signal when they're not anxious, defensive, or confused about what you're asking. An interview where topics build on each other, where I'm genuinely curious rather than checking boxes, gets the candidate to stop performing and start communicating.
 
 ---
 
@@ -245,13 +241,11 @@ Everything upstream exists in service of this moment: the signal definitions, th
 </svg>
 {{< /figure-svg >}}
 
-"I liked them" and "something felt off" might be valid starting points, but they're not decisions. A good debrief is structured synthesis: each interviewer presents what they observed (specific examples, not feelings) and the group constructs a composite picture from those inputs.
+"I liked them" and "something felt off" has come up at one point or another with every group of interviewers I've worked with. They're fine as starting points. But I've learned to push past them fast: what specifically did you observe? "They struggled with system design" isn't super useful. "They defaulted to a monolithic approach, didn't consider failure modes until I prompted them, but course-corrected quickly with strong first-principles reasoning" is a high resolution data point a group can work with.
 
-"They struggled with the system design question" is not useful. "When I asked them to design a notification system, they defaulted to a monolithic approach and didn't consider failure modes until I prompted them. But once prompted, they course-corrected quickly and their reasoning showed strong first principles." That's a high-resolution data point the group can work with.
+The best debriefs I've been in usually have one thing in common: people are honest about where they have depth and where they don't. In one, an interviewer flagged that she hadn't gotten signal on metrics-driven decision-making for an engineering manager candidate. Rather than treat that as a gap to worry about, we mapped back to what we actually needed: logical consistency, tough calls with data, structured problem-solving. That signal was scattered across other interviews — ownership from the leadership round, goal decomposition from the process round. We composited it and made a confident hire, one of the best managers I've brought on.
 
-The fix is simple: ground every claim in observation, and be willing to say "I don't have enough depth here to have a strong read." A gap in your map is more useful than false confidence. In one debrief, an interviewer flagged that she hadn't gotten signal on metrics-driven decision-making for an engineering manager candidate. Rather than treat that as a gap to worry about, we mapped back to what we actually needed: logical consistency, tough calls with data, structured problem-solving. That signal was scattered across other interviews. Ownership from the leadership round, goal decomposition from the process round. We composited it and made a confident hire, one of the best managers I've brought on.
-
-What you're after is **reproducible decisions**. If you ran the same candidate through your process again with different interviewers, would you reach a similar conclusion? That requires calibration. If "strong signal on system design" means something different to each person in the room, no amount of process will make the synthesis work. Have interviewers shadow each other. Compare notes on the same candidate. Debrief the debrief. You don't want uniformity (different perspectives are the whole point) but you need enough shared understanding that the data you're combining is actually commensurable.
+What I'm after is **reproducible decisions** — if I ran the same candidate through again with different interviewers, would we land in a similar place? That's only possible if my interviewers are calibrated. I've seen "strong signal on system design" mean completely different things to different people in the same debrief. The only fix I've found is ongoing: shadow each other, compare notes on the same candidate, talk about what you're seeing and why. Not to make everyone agree — different perspectives are the whole point — but so that when we composite the picture, we're actually working from commensurable data.
 
 ---
 
@@ -259,7 +253,7 @@ What you're after is **reproducible decisions**. If you ran the same candidate t
 
 There's one more step most people skip: checking the map against reality.
 
-When a hire works out, look back at what your process predicted. When one doesn't, do the same. The feedback cycle is long, the data is messy, and clean attribution is rare. But even rough pattern-matching over time teaches you which signals were actually predictive and which were noise that felt like signal.
+When a hire works out, I look back at what the process predicted. When one doesn't, I do the same. The feedback cycle is long, the data is messy, and clean attribution is rare. But even rough pattern-matching over time has taught me which of my signals were actually predictive and which were noise that felt like signal.
 
 {{< figure-svg alt="Feedback loop: define signals, interview, debrief and decide, observe outcomes, repeat" caption="Each decision sharpens the next one." >}}
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 260" width="480" height="260">
@@ -306,4 +300,4 @@ When a hire works out, look back at what your process predicted. When one doesn'
 </svg>
 {{< /figure-svg >}}
 
-You will never have complete information about a candidate. Be honest about that uncertainty, build structures that make the best use of limited data, and close the loop so that each decision sharpens the next one. Repeatability, not perfection.
+I'll never have complete information about a candidate. Nobody will. But I've gotten better at being honest about that uncertainty — building processes that make the best use of limited data, and closing the loop so each decision sharpens the next one. Not perfection. Repeatability.
