@@ -16,6 +16,10 @@ Personal portfolio/blog site for Bernardo Farah built with **Hugo** (v0.155+). D
   ```
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu --print-to-pdf=/tmp/resume.pdf --no-pdf-header-footer http://localhost:1313/resume/
   ```
+- **PageSpeed Insights:** Run Lighthouse against localhost to check performance (useful after layout/loading changes, not needed for every change):
+  ```
+  npx lighthouse http://localhost:1313/ --output=json --output-path=/tmp/lighthouse.json --chrome-flags="--headless" --only-categories=performance
+  ```
 
 ## Architecture
 
@@ -52,8 +56,9 @@ This creates a visual bridge from the wide header to narrower content.
 
 ### Styling
 
+- CSS is inlined via `<style>{{ $css.Content | safeCSS }}</style>` — because of this, font `url()` paths in SCSS must be absolute (e.g., `url('/fonts/...')` not `url('../fonts/...')`), otherwise they break on nested pages like `/posts/slug/`
 - SCSS compiled via Dart Sass (`css.Sass` pipe)
-- **Important:** Use `.RelPermalink` (not `.Permalink`) for CSS links to avoid CORS issues with Hugo's dev asset server
+- **Important:** Always verify changes in the browser (open the page, check console errors, check network requests) — do not rely solely on `hugo` build success or `curl` checks
 - Color system: orange primary (#f29e0b), blue secondary (#337196)
 - Typography: Newsreader (serif body), Texta (sans-serif headings), Office Code Pro (monospace)
 - Breakpoints: `$medium-screen-up` (600px), `$large-screen-up` (900px) via vendored `media()` mixin
