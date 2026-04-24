@@ -19,9 +19,6 @@
  * © 2016 MyFonts Inc
 */
 
-/* @import must be at top of file, otherwise CSS will not work */
-@import url("//hello.myfonts.net/count/30a4f8");
-
 @font-face {
   font-family: 'Newsreader';
   font-style: normal;
@@ -41,54 +38,31 @@
 @font-face {
   font-family: 'Office Code Pro';
   font-weight: 500;
-  src: url('../fonts/OfficeCodePro-Regular.eot');
-  src: url('../fonts/OfficeCodePro-Regular.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/OfficeCodePro-Regular.woff2') format('woff2'),
-       url('../fonts/OfficeCodePro-Regular.woff') format('woff'),
-       url('../fonts/OfficeCodePro-Regular.ttf') format('truetype');
+  src: url('../fonts/OfficeCodePro-Regular.woff2') format('woff2'),
+       url('../fonts/OfficeCodePro-Regular.woff') format('woff');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Office Code Pro';
   font-weight: 700;
-  src: url('../fonts/OfficeCodePro-Bold.eot');
-  src: url('../fonts/OfficeCodePro-Bold.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/OfficeCodePro-Bold.woff2') format('woff2'),
-       url('../fonts/OfficeCodePro-Bold.woff') format('woff'),
-       url('../fonts/OfficeCodePro-Bold.ttf') format('truetype');
+  src: url('../fonts/OfficeCodePro-Bold.woff2') format('woff2'),
+       url('../fonts/OfficeCodePro-Bold.woff') format('woff');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Texta';
   font-weight: 500;
-  src: url('../fonts/30A4F8_D_0.eot');
-  src: url('../fonts/30A4F8_D_0.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/30A4F8_D_0.woff2') format('woff2'),
-       url('../fonts/30A4F8_D_0.woff') format('woff'),
-       url('../fonts/30A4F8_D_0.ttf') format('truetype');
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Texta';
-  font-weight: 700;
-  src: url('../fonts/30A4F8_3_0.eot');
-  src: url('../fonts/30A4F8_3_0.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/30A4F8_3_0.woff2') format('woff2'),
-       url('../fonts/30A4F8_3_0.woff') format('woff'),
-       url('../fonts/30A4F8_3_0.ttf') format('truetype');
+  src: url('../fonts/30A4F8_D_0.woff2') format('woff2'),
+       url('../fonts/30A4F8_D_0.woff') format('woff');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Texta';
   font-weight: 900;
-  src: url('../fonts/30A4F8_4_0.eot');
-  src: url('../fonts/30A4F8_4_0.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/30A4F8_4_0.woff2') format('woff2'),
-       url('../fonts/30A4F8_4_0.woff') format('woff'),
-       url('../fonts/30A4F8_4_0.ttf') format('truetype');
+  src: url('../fonts/30A4F8_4_0.woff2') format('woff2'),
+       url('../fonts/30A4F8_4_0.woff') format('woff');
   font-display: swap;
 }
