@@ -1,10 +1,12 @@
 {{ define "main" }}
 <div class="intro">
   {{ with resources.Get "images/bernardo.png" }}
-  {{ $webp := .Process "resize 424x webp q85" }}
+  {{ $w1x := .Process "resize 220x webp q85" }}
+  {{ $w2x := .Process "resize 424x webp q85" }}
+  {{ $png1x := .Process "resize 220x" }}
   <picture class="intro-photo">
-    <source srcset="{{ $webp.RelPermalink }}" type="image/webp">
-    <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="Bernardo Farah" fetchpriority="high" decoding="async">
+    <source srcset="{{ $w1x.RelPermalink }} 1x, {{ $w2x.RelPermalink }} 2x" type="image/webp">
+    <img src="{{ $png1x.RelPermalink }}" srcset="{{ .RelPermalink }} 2x" width="220" height="220" alt="Bernardo Farah" fetchpriority="high" decoding="async">
   </picture>
   {{ end }}
   <div class="intro-text">
