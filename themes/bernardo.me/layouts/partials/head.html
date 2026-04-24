@@ -9,8 +9,8 @@
 <link rel="preload" href="/fonts/30A4F8_D_0.woff2" as="font" type="font/woff2" crossorigin>
 
 {{ $css := resources.Get "scss/main.scss" | css.Sass }}
-{{ if hugo.IsProduction }}{{ $css = $css | minify | fingerprint "md5" }}{{ end }}
-<link rel="stylesheet" href="{{ $css.RelPermalink }}" as="style" />
+{{ if hugo.IsProduction }}{{ $css = $css | minify }}{{ end }}
+<style>{{ $css.Content | safeCSS }}</style>
 
 <link rel="preconnect" href="//hello.myfonts.net">
 <link rel="stylesheet" href="//hello.myfonts.net/count/30a4f8" media="print" onload="this.media='all'">
