@@ -102,8 +102,8 @@ body {
   .intro-photo {
     width: 45%;
     max-width: 200px;
-    height: auto;
     border-radius: 50%;
+    overflow: hidden;
     display: block;
     margin: 0 auto 2rem;
 
@@ -112,6 +112,12 @@ body {
       max-width: 220px;
       margin: 0;
       flex-shrink: 0;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
   }
 

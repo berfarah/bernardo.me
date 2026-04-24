@@ -1,7 +1,11 @@
 {{ define "main" }}
 <div class="intro">
   {{ with resources.Get "images/bernardo.png" }}
-  <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" class="intro-photo" alt="Bernardo Farah" />
+  {{ $webp := .Process "resize 424x webp q85" }}
+  <picture class="intro-photo">
+    <source srcset="{{ $webp.RelPermalink }}" type="image/webp">
+    <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="Bernardo Farah" fetchpriority="high" decoding="async">
+  </picture>
   {{ end }}
   <div class="intro-text">
     {{ .Content }}
